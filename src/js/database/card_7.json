@@ -2,20 +2,20 @@
   "type": "pokemon",
   "name": "Magmar",
   "nature": "fire",
-  "vitality": "80",
+  "vitality": 80,
   "attacks": [
     {
       "name": "Puño Fuego",
       "cost": ["fire", "fire"],
-      "damage": "30"
+      "damage": 30
     },
     {
       "name": "Lanzallamas",
       "cost": ["fire", "fire", "any"],
-      "damage": "60",
+      "damage": 60,
       "effect": "discard 1 fire"
     }
   ],
   "weakness": "water",
-  "retire": "2"
+  "retire": 2
 }

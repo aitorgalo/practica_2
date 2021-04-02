@@ -2,7 +2,7 @@
   "type": "pokemon",
   "name": "Magnemite",
   "nature": "electric",
-  "vitality": "50",
+  "vitality": 50,
   "attacks": [
     {
       "name": "Onda Trueno",
@@ -12,11 +12,11 @@
     {
       "name": "Autodestrucción",
       "cost": ["electric", "any"],
-      "damage": "50",
+      "damage": 50,
       "effect": "autoattack 50"
     }
   ],
   "weakness": "fight",
   "strong": "metal",
-  "retire": "1"
+  "retire": 1
 }

@@ -2,21 +2,21 @@
   "type": "pokemon",
   "name": "Pikachu",
   "nature": "electric",
-  "vitality": "60",
+  "vitality": 60,
   "attacks": [
     {
       "name": "Roer",
       "cost": ["any"],
-      "damage": "10"
+      "damage": 10
     },
     {
       "name": "Sacudida Atronadora",
       "cost": ["electric", "any"],
-      "damage": "30",
+      "damage": 30,
       "effect": "random autoattack 10"
     }
   ],
   "weakness": "fight",
   "strong": "metal",
-  "retire": "1"
+  "retire": 1
 }

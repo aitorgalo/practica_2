@@ -2,19 +2,19 @@
   "type": "pokemon",
   "name": "Ponyta",
   "nature": "fire",
-  "vitality": "60",
+  "vitality": 60,
   "attacks": [
     {
       "name": "Patada Destrucción",
       "cost": ["any", "any"],
-      "damage": "20"
+      "damage": 20
     },
     {
       "name": "Cola de Fuego",
       "cost": ["fire", "fire"],
-      "damage": "30"
+      "damage": 30
     }
   ],
   "weakness": "water",
-  "retire": "1"
+  "retire": 1
 }

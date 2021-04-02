@@ -2,21 +2,21 @@
   "type": "pokemon",
   "name": "Zapdos",
   "nature": "electric",
-  "vitality": "110",
+  "vitality": 110,
   "attacks": [
     {
       "name": "Trueno",
       "cost": ["electric", "electric", "any", "any"],
-      "damage": "90",
+      "damage": 90,
       "effect": "autoattack 90"
     },
     {
       "name": "Rayo",
       "cost": ["electric", "electric", "electric", "electric"],
-      "damage": "170",
+      "damage": 170,
       "effect": "discard all energy"
     }
   ],
   "strong": "fight",
-  "retire": "2"
+  "retire": 2
 }

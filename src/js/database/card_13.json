@@ -2,7 +2,7 @@
   "type": "pokemon",
   "name": "Diglett",
   "nature": "fight",
-  "vitality": "40",
+  "vitality": 40,
   "hability": "evade dock",
   "attacks": [
     {
@@ -12,5 +12,5 @@
     }
   ],
   "weak": "plant",
-  "retire": "1"
+  "retire": 1
 }

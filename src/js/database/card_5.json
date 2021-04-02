@@ -2,16 +2,16 @@
   "type": "pokemon",
   "name": "Arcanine",
   "nature": "fire",
-  "vitality": "130",
+  "vitality": 130,
   "hability": "move fire energy",
   "attacks": [
     {
       "name": "Aliento Ígneo",
       "cost": ["fire", "fire", "fire", "any"],
-      "damage": "150",
+      "damage": 150,
       "effect": "skip 1 turn"
     }
   ],
   "weakness": "water",
-  "retire": "2"
+  "retire": 2
 }

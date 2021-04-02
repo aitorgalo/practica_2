@@ -2,20 +2,20 @@
   "type": "pokemon",
   "name": "Dugtrio",
   "nature": "fight",
-  "vitality": "90",
+  "vitality": 90,
   "attacks": [
     {
       "name": "Cuchillada",
       "cost": ["any", "any"],
-      "damage": "40"
+      "damage": 40
     },
     {
       "name": "Terremoto",
       "cost": ["fight", "fight", "fight"],
-      "damage": "130",
+      "damage": 130,
       "effect": "attack 20 self dock"
     }
   ],
   "weak": "plant",
-  "retire": "1"
+  "retire": 1
 }
