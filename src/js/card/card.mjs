@@ -9,8 +9,11 @@ class Card {
     this.name = data.name;
     this.nature = data.nature;
     this.vitality = data.vitality;
+	this.hability = data.hability;
+	this.strong = data.strong;
     this.attacks = data.attacks;
     this.weakness = data.weakness;
+	this.effect = data.effect;
     this.retire = data.retire;
   }
 }
