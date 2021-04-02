@@ -19,9 +19,12 @@ class Hand {
       let cantidad = hands_json['card_' + card];
 
       for(let index = 1 ; index <= cantidad ; index++)
+      {
       this.cards.push(cards_prototype.get('card_' + card));
 
 
+
+    }
 
     }
   }
@@ -29,3 +32,4 @@ class Hand {
 
 // Crear mano de juego
 let hand = new Hand(cards_prototype);
+console.log(hand.cards);
