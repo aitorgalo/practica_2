@@ -1,9 +1,9 @@
 // Librería lectura de File System
-const fs = require('fs');
+import fs from 'fs';
 
 // Constructor Card
 class Card {
-  constructor(data) {
+  constructor(number,data) {
     // Guardo el contenido del JSON en el Objeto Javascript
     this.type = data.type;
     this.name = data.name;
@@ -15,8 +15,14 @@ class Card {
   }
 }
 
+// Creo mapa de las Cards
+let cards = new Map();
+
 // Busco todas las Cards
-for (i = 1; i <= 25; i++) {
-  card = new Card(JSON.parse(fs.readFileSync('card_' + i + '.json')));
-  console.log(card);
+for (let i = 1; i <= 25; i++) {
+  let card = new Card(i,JSON.parse(fs.readFileSync('database/card_' + i + '.json')));
+  cards.set(i,card);
 }
+
+// Obtengo listado de todas las cards
+export { cards };
