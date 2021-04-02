@@ -1,0 +1,22 @@
+{
+  "type": "pokemon",
+  "name": "Raichu",
+  "nature": "electric",
+  "vitality": "100",
+  "attacks": [
+    {
+      "name": "Vigorizar",
+      "cost": ["electric"],
+      "effect": "get 1 electric"
+    },
+    {
+      "name": "Rayo Chispa",
+      "cost": ["electric", "electric", "any"],
+      "damage": "70",
+      "effect": "discard all energy 70"
+    }
+  ],
+  "weakness": "fight",
+  "strong": "metal",
+  "retire": "1"
+}

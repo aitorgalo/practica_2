@@ -1,0 +1,23 @@
+{
+  "type": "pokemon",
+  "name": "Magneton",
+  "nature": "electric",
+  "vitality": "80",
+  "attacks": [
+    {
+      "name": "Onda Trueno",
+      "cost": ["electric", "any"],
+      "damage": "30",
+      "effect": "random paralysis"
+    },
+    {
+      "name": "Autodestrucción",
+      "cost": ["electric", "electric", "any"],
+      "damage": "80",
+      "effect": "autoattack 80"
+    }
+  ],
+  "weakness": "fight",
+  "strong": "metal",
+  "retire": "1"
+}
