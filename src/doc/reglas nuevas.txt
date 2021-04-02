@@ -1,0 +1,10 @@
+luego robas 1 carta solo
+Hay ataques especiales con moneda
+El primero no puede atacar.
+Puedes retirar pokemon, sacar otro y atacar en el mismo turno.
+Primer turno puedes poner los de la banca tambien y el principal.
+Cualquier ataque depende del tipo de Pokemon.
+Veneno. Pierde 10 puntos por turno.
+Puedes evolucionar Pokemon en banquillo.
+Al evolucionar se quita veneno, paralisis, etc...
+Se paraliza 1 turno sólo, no puede atacar.
