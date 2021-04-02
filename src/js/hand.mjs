@@ -7,7 +7,7 @@ import fs from 'fs';
 // Constructor Hand
 class Hand {
   // Init Cards
-  cards = [];
+  Cards = [];
 
   constructor(cards_prototype) {
     // Obtengo JSON para mirar las cartas
@@ -18,18 +18,19 @@ class Hand {
       // Cantidad de Cartas
       let cantidad = hands_json['card_' + card];
 
-      for(let index = 1 ; index <= cantidad ; index++)
-      {
-      this.cards.push(cards_prototype.get('card_' + card));
+      for (let index = 1; index <= cantidad; index++) {
 
-
-
-    }
-
+        this.Cards.push(cards_prototype.get('card_' + card));
+      }
     }
   }
 }
 
+// Para ordenar la array
+function orderArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
 // Crear mano de juego
-let hand = new Hand(cards_prototype);
-console.log(hand.cards);
+let hand_player = new Hand(cards_prototype);
+let hand_machine = new Hand(cards_prototype);
