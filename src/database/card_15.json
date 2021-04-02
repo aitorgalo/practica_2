@@ -1,0 +1,18 @@
+{
+
+"type" : "pokemon" ,
+"name" : "machop" ,
+"nature" : "fight" ,
+"vitality" : "70" ,
+"attacks" : [
+	{
+	"name" : "Golpe Bis" ,
+	"cost" : ["fight","fight"] ,
+	"damage" : "0" ,
+	"effect" : "random 20 x 2"
+	}
+] ,
+"weak" : "psychic" ,
+"retire" : "2"
+
+}

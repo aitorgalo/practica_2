@@ -1,0 +1,20 @@
+{
+
+"type" : "pokemon" ,
+"name" : "charizard" ,
+"nature" : "fire" ,
+"vitality" : "150" ,
+"hability" : "all fire",
+"attacks" : [
+	{
+	"name" : "Giro Fuego" ,
+	"cost" : ["fire","fire","fire","fire"] ,
+	"damage" : "200" ,
+	"effect" : "discard 3 fire"
+	}
+] ,
+"weakness" : "water" ,
+"strong" : "fight" ,
+"retire" : "3"
+
+}

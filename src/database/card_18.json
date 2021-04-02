@@ -1,0 +1,24 @@
+{
+
+"type" : "pokemon" ,
+"name" : "raticate" ,
+"nature" : "normal" ,
+"vitality" : "60" ,
+"attacks" : [
+	{
+	"name" : "Triturar" ,
+	"cost" : ["any"] ,
+	"damage" : "10" ,
+	"effect" : "discard 1 energy rival"
+	} , 
+    {
+	"name" : "Mordisco Sombrío" ,
+	"cost" : ["any"] ,
+	"damage" : "0" ,
+	"effect" : "60 x special energy"
+	} 
+] ,
+"weak" : "fight" ,
+"retire" : "1"
+
+}

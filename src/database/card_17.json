@@ -1,0 +1,18 @@
+{
+
+"type" : "pokemon" ,
+"name" : "rattata" ,
+"nature" : "normal" ,
+"vitality" : "40" ,
+"hability" : "delete rival tool",
+"attacks" : [
+	{
+	"name" : "Mordisco" ,
+	"cost" : ["any"] ,
+	"damage" : "10"
+	}
+] ,
+"weak" : "fight" ,
+"retire" : "1"
+
+}

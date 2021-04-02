@@ -1,0 +1,22 @@
+{
+
+"type" : "pokemon" ,
+"name" : "ponyta" ,
+"nature" : "fire" ,
+"vitality" : "60" ,
+"attacks" : [
+	{
+	"name" : "Patada Destrucción" ,
+	"cost" : ["any","any"] ,
+	"damage" : "20"
+	} , 
+    {
+	"name" : "Cola de Fuego" ,
+	"cost" : ["fire","fire"] ,
+	"damage" : "30"
+	} 
+] ,
+"weakness" : "water" ,
+"retire" : "1"
+
+}

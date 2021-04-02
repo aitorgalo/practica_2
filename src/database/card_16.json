@@ -1,0 +1,24 @@
+{
+
+"type" : "pokemon" ,
+"name" : "machoke" ,
+"nature" : "fight" ,
+"vitality" : "90" ,
+"attacks" : [
+	{
+	"name" : "Golpe Kárate" ,
+	"cost" : ["fight","fight"] ,
+	"damage" : "60",
+	"effect" : "auto 10 less"
+	} , 
+    {
+	"name" : "Sumisión" ,
+	"cost" : ["fight","fight","fight"] ,
+	"damage" : "80" ,
+	"effect" : "auto attack 20"
+	} 
+] ,
+"weak" : "psychic" ,
+"retire" : "2"
+
+}

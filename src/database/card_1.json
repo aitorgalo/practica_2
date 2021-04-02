@@ -1,0 +1,23 @@
+{
+
+"type" : "pokemon" ,
+"name" : "charmander" ,
+"nature" : "fire" ,
+"vitality" : "60" ,
+"attacks" : [
+	{
+	"name" : "Arañazo" ,
+	"cost" : ["any"] ,
+	"damage" : "10"
+	} , 
+    {
+	"name" : "Ascuas" ,
+	"cost" : ["fire","any"] ,
+	"damage" : "30" ,
+	"effect" : "discard 1 fire"
+	} 
+] ,
+"weakness" : "water" ,
+"retire" : "1"
+
+}
