@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "magnemite" ,
+"name" : "Magnemite" ,
 "nature" : "electric" ,
 "vitality" : "50" ,
 "attacks" : [

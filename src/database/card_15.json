@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "machop" ,
+"name" : "Machop" ,
 "nature" : "fight" ,
 "vitality" : "70" ,
 "attacks" : [

@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "magmar" ,
+"name" : "Magmar" ,
 "nature" : "fire" ,
 "vitality" : "80" ,
 "attacks" : [

@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "zapdos" ,
+"name" : "Zapdos" ,
 "nature" : "electric" ,
 "vitality" : "110" ,
 "attacks" : [

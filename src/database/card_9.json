@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "raichu" ,
+"name" : "Raichu" ,
 "nature" : "electric" ,
 "vitality" : "100" ,
 "attacks" : [

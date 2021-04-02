@@ -1,7 +1,7 @@
 {
 
 "type" : "pokemon" ,
-"name" : "pikachu" ,
+"name" : "Pikachu" ,
 "nature" : "electric" ,
 "vitality" : "60" ,
 "attacks" : [
