@@ -16,6 +16,7 @@ class Card {
 	this.effect = data.effect;
     this.retire = data.retire;
   }
+    
 }
 
 // Creo mapa de las Cards
@@ -24,7 +25,7 @@ let cards = new Map();
 // Busco todas las Cards
 for (let i = 1; i <= 25; i++) {
   let card = new Card(i,JSON.parse(fs.readFileSync('database/card_' + i + '.json')));
-  cards.set(i,card);
+  cards.set('card_' + i,card);
 }
 
 // Obtengo listado de todas las cards
