@@ -10,13 +10,14 @@ class Card {
   constructor(cardPrototype) {
 
     // Get Card Prototype Values
-    this.type = cardPrototype.type;
-    this.name = cardPrototype.name;
-    this.nature = cardPrototype.nature;
-    this.vitality = cardPrototype.vitality;
-    this.attacks = cardPrototype.attacks;
-    this.weakness = cardPrototype.weakness;
-    this.retire = cardPrototype.retire;
+    if (cardPrototype.type !== undefined) this.type = cardPrototype.type;
+    if (cardPrototype.name !== undefined)this.name = cardPrototype.name;
+    if (cardPrototype.nature !== undefined)this.nature = cardPrototype.nature;
+    if (cardPrototype.vitality !== undefined)this.vitality = cardPrototype.vitality;
+    if (cardPrototype.attacks !== undefined)this.attacks = cardPrototype.attacks;
+    if (cardPrototype.weakness !== undefined)this.weakness = cardPrototype.weakness;
+    if (cardPrototype.effect !== undefined)this.effect = cardPrototype.effect;
+    if (cardPrototype.retire !== undefined)this.retire = cardPrototype.retire;
 
   }
 
