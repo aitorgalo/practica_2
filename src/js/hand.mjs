@@ -2,11 +2,24 @@
 import { cardDatabase } from './cardDatabase/cardDatabase.mjs';
 
 // Array con número de cartas
-let hands_json = [2 , 1 ,  1 ,  2 , 1 , 2 , 1 , 2 ,  1 , 2 , 1 , 1 , 2 , 1 , 1 , 1 , 2 , 1 , 1 , 2 , 3 , 2 , 11 , 9 , 7];
+let hands_json = [2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 3, 2, 11, 9, 7];
 
 // Constructor Card
-class Card{
-  
+class Card {
+
+  constructor(cardPrototype) {
+
+    // Get Card Prototype Values
+    this.type = cardPrototype.type;
+    this.name = cardPrototype.name;
+    this.nature = cardPrototype.nature;
+    this.vitality = cardPrototype.vitality;
+    this.attacks = cardPrototype.attacks;
+    this.weakness = cardPrototype.weakness;
+    this.retire = cardPrototype.retire;
+
+  }
+
 }
 
 // Constructor Hand
@@ -23,14 +36,12 @@ class Hand {
 
       // Repito las cartas según mazo
       for (let index = 1; index <= cantidad; index++) {
-        // Objeto Card
-        var card = {
-          name: cards[card_count].name,
-          prototype: cards[card_count]
-        };
 
+        // Objeto Card
+        var card = new Card(cards[card_count]);
         // Pongo Carta en Array
         this.cards.push(card);
+
       }
     }
   }
@@ -47,4 +58,4 @@ let hand_machine = new Hand(cardDatabase);
 
 console.log(hand_player);
 
-export { hand_player , hand_machine };
+export { hand_player, hand_machine };
