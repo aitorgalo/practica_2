@@ -1,8 +1,8 @@
 {
-  "name": "card",
+  "name": "cardDatabase",
   "version": "1.0.0",
   "description": "",
-  "main": "card.mjs",
+  "main": "cardDatabase.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
