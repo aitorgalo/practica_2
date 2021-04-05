@@ -1,5 +1,5 @@
 // Importo módulo con las cartas
-import { cards as cards_prototype } from './card/card.mjs';
+import { cards } from './card/card.mjs';
 
 // Importo lectura
 import fs from 'fs';
@@ -9,7 +9,7 @@ class Hand {
   // Init Cards
   cards = [];
 
-  constructor(cards_prototype) {
+  constructor(cards) {
     // Obtengo JSON para mirar las cartas
     let hands_json = JSON.parse(fs.readFileSync('database/hand.json'));
 
@@ -23,9 +23,8 @@ class Hand {
       for (let index = 1; index <= cantidad; index++) {
         // Objeto Card
         var card = {
-          name: cards_prototype.get('card_' + card_count).name,
-          
-          prototype: cards_prototype.get('card_' + card_count),
+          name: cards.get('card_' + card_count).name,
+          prototype: cards.get('card_' + card_count)
         };
 
         // Pongo Carta en Array
@@ -41,5 +40,7 @@ function orderArray(array) {
 }
 
 // Crear mano de juego
-let hand_player = new Hand(cards_prototype);
-let hand_machine = new Hand(cards_prototype);
+let hand_player = new Hand(cards);
+let hand_machine = new Hand(cards);
+
+export { hand_player , hand_machine };
