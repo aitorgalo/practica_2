@@ -88,28 +88,6 @@ var cardDatabase = [
 
   {
     "type": "pokemon",
-    "name": "Growlithe",
-    "nature": "fire",
-    "vitality": 70,
-    "attacks": [
-      {
-        "name": "Patada Posterior",
-        "cost": ["any"],
-        "damage": 10,
-        "effect": "change pokemon"
-      },
-      {
-        "name": "Llama",
-        "cost": ["fire", "any"],
-        "damage": 20
-      }
-    ],
-    "weakness": "water",
-    "retire": 2
-  },
-
-  {
-    "type": "pokemon",
     "name": "Arcanine",
     "nature": "fire",
     "vitality": 130,
