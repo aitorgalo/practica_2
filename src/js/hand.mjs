@@ -11,13 +11,13 @@ class Card {
 
     // Get Card Prototype Values
     if (cardPrototype.type !== undefined) this.type = cardPrototype.type;
-    if (cardPrototype.name !== undefined)this.name = cardPrototype.name;
-    if (cardPrototype.nature !== undefined)this.nature = cardPrototype.nature;
-    if (cardPrototype.vitality !== undefined)this.vitality = cardPrototype.vitality;
-    if (cardPrototype.attacks !== undefined)this.attacks = cardPrototype.attacks;
-    if (cardPrototype.weakness !== undefined)this.weakness = cardPrototype.weakness;
-    if (cardPrototype.effect !== undefined)this.effect = cardPrototype.effect;
-    if (cardPrototype.retire !== undefined)this.retire = cardPrototype.retire;
+    if (cardPrototype.name !== undefined) this.name = cardPrototype.name;
+    if (cardPrototype.nature !== undefined) this.nature = cardPrototype.nature;
+    if (cardPrototype.vitality !== undefined) this.vitality = cardPrototype.vitality;
+    if (cardPrototype.attacks !== undefined) this.attacks = cardPrototype.attacks;
+    if (cardPrototype.weakness !== undefined) this.weakness = cardPrototype.weakness;
+    if (cardPrototype.effect !== undefined) this.effect = cardPrototype.effect;
+    if (cardPrototype.retire !== undefined) this.retire = cardPrototype.retire;
 
   }
 
@@ -56,7 +56,5 @@ function orderArray(array) {
 // Crear mano de juego
 let hand_player = new Hand(cardDatabase);
 let hand_machine = new Hand(cardDatabase);
-
-console.log(hand_player);
 
 export { hand_player, hand_machine };
