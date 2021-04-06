@@ -8,23 +8,18 @@ class Game {
 		this.initGame();
 	}
 
-	sendCommand(input, display) {
+	sendCommand(input, output) {
 
 		switch (input) {
-			case "count": display.innerHTML = this.hand_player.cards.length; break;
+			case "count": output.innerHTML = this.hand_player.cards.length; break;
 			case "remove": this.hand_player.remove(); break;
 			case "draw": this.drawTest(); break;
 			case "draw2": this.drawTest2(); break;
 			case "restart": this.initGame();
 
-
 			default:
 
-
-
 		}
-
-
 
 	}
 
@@ -59,7 +54,12 @@ ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
 
 }
 
+// Create Game
 let game = new Game();
+
+// Importo módulo con el entorno gráfico
+import { initGUI } from './gui.mjs';
+initGUI(game);
 
 // Exporto módulo
 export { game };
