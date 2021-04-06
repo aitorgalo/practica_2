@@ -6,22 +6,21 @@ class Card {
 
   constructor(cardPrototype) {
 
-	// Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
-	this.status = 'deck';
-	
+    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
+    this.status = 'deck';
+
     // Get Card Prototype Values
     if (cardPrototype.type !== undefined) this.type = cardPrototype.type;
     if (cardPrototype.name !== undefined) this.name = cardPrototype.name;
     if (cardPrototype.nature !== undefined) this.nature = cardPrototype.nature;
-	
-	// Asigno Vida máxima a carta
-    if (cardPrototype.vitality !== undefined)
-	{
-	this.vitality = cardPrototype.vitality;
-	this.vitality_now = cardPrototype.vitality;	
-	}
-	
-	// Other Values
+
+    // Asigno Vida máxima a carta
+    if (cardPrototype.vitality !== undefined) {
+      this.vitality = cardPrototype.vitality;
+      this.vitality_now = cardPrototype.vitality;
+    }
+
+    // Other Values
     if (cardPrototype.attacks !== undefined) this.attacks = cardPrototype.attacks;
     if (cardPrototype.weakness !== undefined) this.weakness = cardPrototype.weakness;
     if (cardPrototype.effect !== undefined) this.effect = cardPrototype.effect;
@@ -38,7 +37,7 @@ class Hand {
 
   constructor(cardDatabase) {
     // Añado todas las Cards a mi array
-    for (let card_count = 0; card_count < cardDatabase.length ; card_count++) {
+    for (let card_count = 0; card_count < cardDatabase.length; card_count++) {
 
       // Repito las cartas según mazo
       for (let index = 1; index <= cardDatabase[card_count].cards_deck; index++) {
@@ -53,9 +52,8 @@ class Hand {
     }
   }
 
- remove()
- {
-   this.cards.pop();
+  remove() {
+    this.cards.pop();
   }
 
 }
@@ -66,4 +64,4 @@ function orderArray(array) {
 }
 
 // Export Class
-export { Hand , cardDatabase };
+export { Hand, cardDatabase };

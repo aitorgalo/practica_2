@@ -21,7 +21,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -44,7 +44,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 1,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -64,7 +64,7 @@ var cardDatabase = [
     "weakness": "water",
     "strong": "fight",
     "retire": 3,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -87,7 +87,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 2,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -106,7 +106,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 2,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -128,7 +128,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -151,7 +151,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 2,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -175,7 +175,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -199,7 +199,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -223,7 +223,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -248,7 +248,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -272,7 +272,7 @@ var cardDatabase = [
     ],
     "strong": "fight",
     "retire": 2,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -290,7 +290,7 @@ var cardDatabase = [
     ],
     "weak": "plant",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -313,7 +313,7 @@ var cardDatabase = [
     ],
     "weak": "plant",
     "retire": 1,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -330,7 +330,7 @@ var cardDatabase = [
     ],
     "weak": "psychic",
     "retire": 2,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -354,7 +354,7 @@ var cardDatabase = [
     ],
     "weak": "psychic",
     "retire": 2,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
@@ -372,7 +372,7 @@ var cardDatabase = [
     ],
     "weak": "fight",
     "retire": 1,
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
@@ -395,42 +395,42 @@ var cardDatabase = [
     ],
     "weak": "fight",
     "retire": 1,
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
     "type": "trainer",
     "name": "Pista del Profesor Oak",
     "effect": "steal 7 end turn",
-	"cards_deck": 1
+    "cards_deck": 1
   },
 
   {
     "type": "trainer",
     "name": "Cambio",
     "effect": "change active dock",
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
     "type": "trainer",
     "name": "Poción",
     "effect": "heal 30",
-	"cards_deck": 3
+    "cards_deck": 3
   },
 
   {
     "type": "trainer",
     "name": "Cura Total",
     "effect": "heal effects",
-	"cards_deck": 2
+    "cards_deck": 2
   },
 
   {
     "name": "Energía Fuego",
     "type": "energy",
     "nature": "fire",
-	"cards_deck": 11
+    "cards_deck": 11
   },
 
 
@@ -438,14 +438,14 @@ var cardDatabase = [
     "name": "Energía Electricidad",
     "type": "energy",
     "nature": "electric",
-	"cards_deck": 9
+    "cards_deck": 9
   },
 
   {
     "name": "Energía Lucha",
     "type": "energy",
     "nature": "fight",
-	"cards_deck": 7
+    "cards_deck": 7
   }
 
 ];
