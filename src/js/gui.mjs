@@ -4,6 +4,8 @@ function initGUI(game) {
     // Canvas
     let canvas = document.createElement("canvas");
     canvas.id = "canvas";
+    canvas.width = 245 * 7;
+    canvas.height = 342 * 2;
     document.getElementsByTagName('body')[0].appendChild(canvas);
 
     // Output

@@ -4,7 +4,10 @@ import { cardDatabase } from './cardDatabase.mjs';
 // Constructor Card
 class Card {
 
-  constructor(cardPrototype) {
+  constructor(cardPrototype, position) {
+
+    //Position of the Card (for the image)
+    this.image = position;
 
     // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
     this.status = 'deck';
@@ -43,17 +46,13 @@ class Hand {
       for (let index = 1; index <= cardDatabase[card_count].cards_deck; index++) {
 
         // Objeto Card
-        var card = new Card(cardDatabase[card_count]);
+        var card = new Card(cardDatabase[card_count], card_count + 1);
 
         // Pongo Carta en Array
         this.cards.push(card);
 
       }
     }
-  }
-
-  remove() {
-    this.cards.pop();
   }
 
 }

@@ -12,7 +12,6 @@ class Game {
 
 		switch (input) {
 			case "count": output.innerHTML = this.hand_player.cards.length; break;
-			case "remove": this.hand_player.remove(); break;
 			case "draw": this.drawTest(); break;
 			case "restart": this.initGame();
 
@@ -25,11 +24,14 @@ class Game {
 	// Draw game test
 	drawTest() {
 
+		
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		var image = document.getElementById('img_1');
 
-		ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+		ctx.drawImage(image, 0, 0, 245, 342);
+		ctx.drawImage(image, 0, 342, 245, 342);
 	}
 
 	// Give Cards to users again
