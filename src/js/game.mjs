@@ -6,19 +6,18 @@ class Game {
 	// Crear mano de juego
 	constructor(gui) {
 		this.gui = gui;
-		this.initGame(gui);		
+		this.initGame(gui);
 		this.gui.initGUI(this);
 	}
 
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "count": output.innerHTML = this.hand_player.cards.length; break;
-			case "draw": this.draw(); break;
+			case "draw": this.draw(this.hand_player.cards,this.hand_machine.cards); break;
 			case "clean": this.gui.clean(); break;
-			case "shuffle" : Hand.shuffle(this.hand_player.cards) ; break;
-			case "print" : console.log(this.hand_player) ; break;
-			case "clear" : console.clear(); break;
+			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
+			case "print": console.log(this.hand_player.cards); console.log(this.hand_machine.cards); break;
+			case "clear": console.clear(); break;
 			case "restart": this.initGame();
 
 			default:
@@ -33,23 +32,39 @@ class Game {
 		// Create New Hand of Cards
 		this.hand_player = new Hand(cardDatabase);
 
-		// Get 7 Cards
+		// Get 7 Cards Player
 		Hand.shuffle(this.hand_player.cards);
-		this.hand_player.cards.slice(0,7).map(card => card.status = 'hand');
+		this.hand_player.cards.slice(0, 7).map(card => card.status = 'hand');
+
+		// Get 7 Cards Machine
 		this.hand_machine = new Hand(cardDatabase);
+
+		// Get 7 Cards Machine
+		Hand.shuffle(this.hand_machine.cards);
+		this.hand_machine.cards.slice(0, 7).map(card => card.status = 'hand');
+
 	}
 
-	draw() {
+	draw(cards_player , cards_machine) {
+
+		// Get Canvas
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
+		
+		// Delete Old Content
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		var image = document.getElementById('img_1');
-	
+
+		// Get All Cards in Hand
+console.log(cards_player.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon'));
+
+
+		var image = document.getElementById('img_2');
+
+		// Enemy Cards
 		ctx.drawImage(image, 0, 0, 245, 342);
+
+		// My Cards
 		ctx.drawImage(image, 0, 342, 245, 342);
-	
-		ctx.beginPath();
-		ctx.rect(20, 20, 150, 100);
 	}
 
 }
