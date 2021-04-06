@@ -9,7 +9,7 @@ class Card {
     //Position of the Card (for the image)
     this.image = position;
 
-    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
+    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
     this.status = 'deck';
 
     // Get Card Prototype Values
@@ -58,7 +58,7 @@ class Hand {
   }
 
   // Para ordenar la array
-static shuffleHand(array) {
+static shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
