@@ -1,3 +1,4 @@
+
 class GUI {
 
     // Constructor
@@ -33,6 +34,8 @@ class GUI {
             let img = document.createElement("img");
             img.id = "img_" + i;
             img.src = "img/" + i + ".png";
+
+            // Add Image to Body
             document.getElementsByTagName('body')[0].appendChild(img);
         }
 
@@ -45,18 +48,12 @@ class GUI {
 
     }
 
-    draw() {
+    clean() {
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        var image = document.getElementById('img_1');
-
-        ctx.drawImage(image, 0, 0, 245, 342);
-        ctx.drawImage(image, 0, 342, 245, 342);
-        console.log(1);
     }
 
 }
 
-let gui = new GUI();
-export { gui };
+export { GUI };
