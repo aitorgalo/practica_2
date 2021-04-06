@@ -21,9 +21,9 @@ function initGUI(game) {
     document.getElementsByTagName('body')[0].appendChild(form);
 
     // Load Website
-    for (let i = 1; i <= 25; i++) {
+    for (let i = 0; i <= 25; i++) {
         let img = document.createElement("img");
-        img.id = "source";
+        img.id = "img_" + i;
         img.src = "img/" + i + ".png";
         document.getElementsByTagName('body')[0].appendChild(img);
     }

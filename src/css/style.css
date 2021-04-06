@@ -1,3 +1,13 @@
 img{
-   display:none; 
+ /*  display:none; */
 }
+
+body {
+    background-color: rgb(240, 240, 240);
+  
+    /* Extraído de https://designers.hubspot.com/docs/snippets/design/centering-your-website-using-max-width-and-auto-margins para responsive */
+  /*   max-width: 2000px; 
+    margin: 0 auto;
+    float: none; */
+  }
+  
