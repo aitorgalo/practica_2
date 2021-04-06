@@ -1,8 +1,5 @@
 // Importo módulo con las cartas
-import { cardDatabase } from './cardDatabase/cardDatabase.mjs';
-
-// Array con número de cartas
-let hands_json = [2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 3, 2, 11, 9, 7];
+import { cardDatabase } from './cardDatabase.mjs';
 
 // Constructor Card
 class Card {
@@ -28,18 +25,16 @@ class Hand {
   // Init Cards
   cards = [];
 
-  constructor(cards) {
+  constructor(cardDatabase) {
     // Añado todas las Cards a mi array
-    for (let card_count = 0; card_count < 25; card_count++) {
-      // Cantidad de Cartas
-      let cantidad = hands_json[card_count];
-      let total = 0;
+    for (let card_count = 0; card_count < cardDatabase.length ; card_count++) {
 
       // Repito las cartas según mazo
-      for (let index = 1; index <= cantidad; index++) {
+      for (let index = 1; index <= cardDatabase[card_count].cards_deck; index++) {
 
         // Objeto Card
-        var card = new Card(cards[card_count]);
+        var card = new Card(cardDatabase[card_count]);
+
         // Pongo Carta en Array
         this.cards.push(card);
 
@@ -47,11 +42,9 @@ class Hand {
     }
   }
 
- test()
+ remove()
  {
    this.cards.pop();
-   document.getElementById('display').innerHTML= this.cards.length;
-   return this.cards.length;
   }
 
 }
@@ -61,8 +54,5 @@ function orderArray(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-// Crear mano de juego
-let hand_player = new Hand(cardDatabase);
-let hand_machine = new Hand(cardDatabase);
-
-export { hand_player, hand_machine };
+// Export Class
+export { Hand , cardDatabase };

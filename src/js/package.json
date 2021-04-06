@@ -1,8 +1,8 @@
 {
-  "name": "hand",
+  "name": "game",
   "version": "1.0.0",
   "description": "Conjunto de cartas",
-  "main": "hand.mjs",
+  "main": "game.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

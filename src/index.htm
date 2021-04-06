@@ -16,16 +16,19 @@
 
 
     <script type="module">
-      import { hand_player , hand_machine } from './js/hand.mjs';
+      import { game } from './js/game.mjs';
+
+// Set Events
       document.getElementById('input').addEventListener('keypress',function(event)
       {
         if(event.keyCode === 13)
         {
           event.preventDefault();
-          hand_player.test();
+      game.sendCommand(this.value , document.getElementById('display'));
           this.value ='';
         }
       })
+
     </script>
 
   </body>
