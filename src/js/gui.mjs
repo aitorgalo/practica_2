@@ -53,6 +53,7 @@ class GUI {
 
         ctx.drawImage(image, 0, 0, 245, 342);
         ctx.drawImage(image, 0, 342, 245, 342);
+        console.log(1);
     }
 
 }

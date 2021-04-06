@@ -7,7 +7,6 @@ class Game {
 	constructor(gui) {
 		this.gui = gui;
 		this.gui.initGUI(this);
-		this.initGame();
 	}
 
 	sendCommand(input, output) {
@@ -27,17 +26,15 @@ class Game {
 	}
 
 	// Give Cards to users again
-	initGame() {
+	initGame(gui) {
 
+		// Create New Hand of Cards
 		this.hand_player = new Hand(cardDatabase);
 
 		// Get 7 Cards
 		Hand.shuffle(this.hand_player.cards);
 		this.hand_player.cards.slice(0,7).map(card => card.status = 'hand');
-
-
 		this.hand_machine = new Hand(cardDatabase);
-
 
 	}
 
