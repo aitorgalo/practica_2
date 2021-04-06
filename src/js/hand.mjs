@@ -35,9 +35,11 @@ class Card {
 
 // Constructor Hand
 class Hand {
+
   // Init Cards
   cards = [];
 
+  // To create Hand
   constructor(cardDatabase) {
     // Añado todas las Cards a mi array
     for (let card_count = 0; card_count < cardDatabase.length; card_count++) {
@@ -55,11 +57,11 @@ class Hand {
     }
   }
 
+  // Para ordenar la array
+static shuffleHand(array) {
+  return array.sort(() => Math.random() - 0.5);
 }
 
-// Para ordenar la array
-function orderArray(array) {
-  return array.sort(() => Math.random() - 0.5);
 }
 
 // Export Class

@@ -21,6 +21,10 @@ class Game {
 
 	}
 
+
+
+
+
 	// Draw game test
 	drawTest() {
 
