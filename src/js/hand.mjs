@@ -46,6 +46,14 @@ class Hand {
       }
     }
   }
+
+ test()
+ {
+   this.cards.pop();
+   document.getElementById('display').innerHTML= this.cards.length;
+   return this.cards.length;
+  }
+
 }
 
 // Para ordenar la array

@@ -9,8 +9,23 @@
   </head>
   <body>
 
+<div id='display' ></div>
+<form>
+<input id='input' type='text' />
+</form>
+
+
     <script type="module">
       import { hand_player , hand_machine } from './js/hand.mjs';
+      document.getElementById('input').addEventListener('keypress',function(event)
+      {
+        if(event.keyCode === 13)
+        {
+          event.preventDefault();
+          hand_player.test();
+          this.value ='';
+        }
+      })
     </script>
 
   </body>
