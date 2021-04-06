@@ -6,11 +6,22 @@ class Card {
 
   constructor(cardPrototype) {
 
+	// Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
+	this.status = 'deck';
+	
     // Get Card Prototype Values
     if (cardPrototype.type !== undefined) this.type = cardPrototype.type;
     if (cardPrototype.name !== undefined) this.name = cardPrototype.name;
     if (cardPrototype.nature !== undefined) this.nature = cardPrototype.nature;
-    if (cardPrototype.vitality !== undefined) this.vitality = cardPrototype.vitality;
+	
+	// Asigno Vida máxima a carta
+    if (cardPrototype.vitality !== undefined)
+	{
+	this.vitality = cardPrototype.vitality;
+	this.vitality_now = cardPrototype.vitality;	
+	}
+	
+	// Other Values
     if (cardPrototype.attacks !== undefined) this.attacks = cardPrototype.attacks;
     if (cardPrototype.weakness !== undefined) this.weakness = cardPrototype.weakness;
     if (cardPrototype.effect !== undefined) this.effect = cardPrototype.effect;

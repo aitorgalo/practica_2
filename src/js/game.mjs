@@ -3,7 +3,6 @@ import { Hand , cardDatabase } from './hand.mjs';
 
 class Game
 {
-
 	// Crear mano de juego
 
 	constructor()
