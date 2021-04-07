@@ -13,7 +13,7 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(this.gui); this.draw(this.hands);
+			case "start": this.initGame(this.gui); this.draw(this.hands); break;
 			case "draw": this.draw(this.hands); break;
 			case "clean": this.gui.clean(); break;
 			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
@@ -53,10 +53,10 @@ class Game {
 			let i = 0;
 
 			// Get All Pokemon Cards in Hand
-			hands[j].cards.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon').sort(card => card.name).forEach(element => {
+			hands[j].cards.filter(card => card.status === 'hand' && card.type === 'pokemon' ).forEach(card => {
 
 				// Get Image
-				var image = document.getElementById('img_' + element.image);
+				var image = document.getElementById('img_' + card.image);
 
 				// Enemy Cards
 				ctx.drawImage(image, (245 * 0.80) * (i), (342 * 0.80) * j, 245 * 0.80, 342 * 0.80);
