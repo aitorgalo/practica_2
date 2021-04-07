@@ -3,11 +3,12 @@ import { Hand, cardDatabase } from './hand.mjs';
 // Importo módulo con el entorno gráfico
 import { GUI } from './gui.mjs';
 class Game {
+
 	// Crear mano de juego
 	constructor(gui) {
 		this.gui = gui;
-		this.initGame(gui);
 		this.gui.initGUI(this);
+		this.initGame(this.gui);
 	}
 
 	sendCommand(input, output) {
@@ -18,7 +19,7 @@ class Game {
 			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
 			case "print": console.log(this.hand_player.cards); console.log(this.hand_machine.cards); break;
 			case "clear": console.clear(); break;
-			case "restart": this.initGame();
+			case "start": this.initGame(this.gui);
 
 			default:
 
@@ -61,10 +62,10 @@ console.log(cards_player.filter(card => card.status === 'hand').filter(card => c
 		var image = document.getElementById('img_2');
 
 		// Enemy Cards
-		ctx.drawImage(image, 0, 0, 245, 342);
+		ctx.drawImage(image, 0, 0, 245 * 0.80 , 342 * 0.80);
 
 		// My Cards
-		ctx.drawImage(image, 0, 342, 245, 342);
+		ctx.drawImage(image, 0, 342 * 0.80 , 245 * 0.80 , 342 * 0.80 );
 	}
 
 }

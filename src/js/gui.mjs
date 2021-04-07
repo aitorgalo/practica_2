@@ -11,8 +11,8 @@ class GUI {
         // Canvas
         let canvas = document.createElement("canvas");
         canvas.id = "canvas";
-        canvas.width = 245 * 7;
-        canvas.height = 342 * 2;
+        canvas.width = (245 * 7) * 0.8;
+        canvas.height = (342 * 2) * 0.8;
         document.getElementsByTagName('body')[0].appendChild(canvas);
 
         // Output
