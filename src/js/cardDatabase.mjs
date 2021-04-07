@@ -44,6 +44,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 1,
+    "prevolution" : "Charmander",
     "cards_deck": 1
   },
 
@@ -64,6 +65,7 @@ var cardDatabase = [
     "weakness": "water",
     "strong": "fight",
     "retire": 3,
+    "prevolution" : "Charmeleon",
     "cards_deck": 1
   },
 
@@ -106,6 +108,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 2,
+    "prevolution" : "Growlithe",
     "cards_deck": 1
   },
 
@@ -199,6 +202,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
+    "prevolution": "Pikachu",
     "cards_deck": 1
   },
 
@@ -248,6 +252,7 @@ var cardDatabase = [
     "weakness": "fight",
     "strong": "metal",
     "retire": 1,
+    "prevolution": "Magnemite",
     "cards_deck": 1
   },
 
@@ -313,6 +318,7 @@ var cardDatabase = [
     ],
     "weak": "plant",
     "retire": 1,
+    "prevolution": "Diglett",
     "cards_deck": 1
   },
 
@@ -354,6 +360,7 @@ var cardDatabase = [
     ],
     "weak": "psychic",
     "retire": 2,
+    "prevolution": "Machop",
     "cards_deck": 1
   },
 
@@ -395,6 +402,7 @@ var cardDatabase = [
     ],
     "weak": "fight",
     "retire": 1,
+    "prevolution": "Rattata",
     "cards_deck": 1
   },
 

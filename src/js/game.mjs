@@ -13,11 +13,11 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(this.gui); this.draw(this.hand_player.cards, this.hand_machine.cards);
-			case "draw": this.draw(this.hand_player.cards, this.hand_machine.cards); break;
+			case "start": this.initGame(this.gui); this.draw(this.hands);
+			case "draw": this.draw(this.hands); break;
 			case "clean": this.gui.clean(); break;
 			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
-			case "print": console.log(this.hand_player.cards); console.log(this.hand_machine.cards); break;
+			case "print": console.log(this.hands); break;
 			case "clear": console.clear(); break;
 
 			default:
@@ -29,23 +29,16 @@ class Game {
 	// Give Cards to users again
 	initGame() {
 
-		// Create New Hand of Cards
-		this.hand_player = new Hand(cardDatabase);
+		// Create New Hand of Cards (For Player 1 and Player 2)
+		this.hands = [new Hand(cardDatabase), new Hand(cardDatabase)];
 
-		// Get 7 Cards Player
-		Hand.shuffle(this.hand_player.cards);
-		this.hand_player.cards.slice(0, 7).map(card => card.status = 'hand');
-
-		// Get 7 Cards Machine
-		this.hand_machine = new Hand(cardDatabase);
-
-		// Get 7 Cards Machine
-		Hand.shuffle(this.hand_machine.cards);
-		this.hand_machine.cards.slice(0, 7).map(card => card.status = 'hand');
+		// Get First 7 Cards
+		this.hands[0].getFirstCards();
+		this.hands[1].getFirstCards();
 
 	}
 
-	draw(cards_player, cards_machine) {
+	draw(hands) {
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
@@ -53,18 +46,20 @@ class Game {
 		canvas.height = (342 * 2) * 0.8;
 		var ctx = canvas.getContext("2d");
 
-		// Delete Old Content
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		// Get Hands
+		for (let j = 0; j < hands.length; j++) {
 
-		// Get All Cards in Hand
-		let pokemon_hands = cards_player.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon');
-		for (let i = 0; i < pokemon_hands.length; i++) {
+			// Get All Cards in Hand
+			let pokemon_hands = hands[j].cards.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon');
+			for (let i = 0; i < pokemon_hands.length; i++) {
 
-			// Get Image
-			var image = document.getElementById('img_' + pokemon_hands[i].image);
+				// Get Image
+				var image = document.getElementById('img_' + pokemon_hands[i].image);
 
-			// Enemy Cards
-			ctx.drawImage(image, ( 245 * 0.80 ) * (i) , 0 , 245 * 0.80, 342 * 0.80);
+				// Enemy Cards
+				ctx.drawImage(image, (245 * 0.80) * (i), ( 342 * 0.80 ) * j , 245 * 0.80, 342 * 0.80);
+
+			}
 
 		}
 

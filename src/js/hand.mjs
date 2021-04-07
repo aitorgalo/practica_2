@@ -57,8 +57,21 @@ class Hand {
     }
   }
 
+getFirstCards()
+{
+  // Shuffle Cards First Time
+  this.shuffle(this.cards);
+
+  // Only get cards if 1 Level 1 Pokemon
+  
+
+  // Get First 7 Cards
+  this.cards.slice(0, 7).map(card => card.status = 'hand');
+
+}
+
   // Para ordenar la array
-static shuffle(array) {
+shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
