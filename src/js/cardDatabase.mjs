@@ -407,28 +407,28 @@ var cardDatabase = [
   },
 
   {
-    "type": "trainer",
+    "type": "inventory",
     "name": "Pista del Profesor Oak",
     "effect": "steal 7 end turn",
     "cards_deck": 1
   },
 
   {
-    "type": "trainer",
+    "type": "inventory",
     "name": "Cambio",
     "effect": "change active dock",
     "cards_deck": 2
   },
 
   {
-    "type": "trainer",
+    "type": "inventory",
     "name": "Poción",
     "effect": "heal 30",
     "cards_deck": 3
   },
 
   {
-    "type": "trainer",
+    "type": "inventory",
     "name": "Cura Total",
     "effect": "heal effects",
     "cards_deck": 2

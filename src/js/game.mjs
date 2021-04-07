@@ -53,7 +53,7 @@ class Game {
 			let i = 0;
 
 			// Get All Pokemon Cards in Hand
-			hands[j].cards.filter(card => card.status === 'hand' && card.type === 'pokemon' ).forEach(card => {
+			hands[j].cards.filter(card => card.status === 'hand').sort((a, b) => b.type.localeCompare(a.type)).forEach(card => {
 
 				// Get Image
 				var image = document.getElementById('img_' + card.image);

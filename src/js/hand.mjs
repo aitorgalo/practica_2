@@ -28,6 +28,7 @@ class Card {
     if (cardPrototype.weakness !== undefined) this.weakness = cardPrototype.weakness;
     if (cardPrototype.effect !== undefined) this.effect = cardPrototype.effect;
     if (cardPrototype.retire !== undefined) this.retire = cardPrototype.retire;
+    if (cardPrototype.prevolution !== undefined) this.prevolution = cardPrototype.prevolution;
 
   }
 
@@ -62,6 +63,13 @@ getFirstCards()
   // Shuffle Cards First Time
   this.shuffle(this.cards);
 
+  // Check First 7 Cards 1 base Pokemon
+  while ( this.cards.slice(0, 7).filter(card => card.type === 'pokemon').filter(card => card.prevolution === undefined).length == 0 )
+  {
+    // Order Again
+    this.shuffle(this.cards);
+  }
+
   // Get First 7 Cards
   this.cards.slice(0, 7).map(card => card.status = 'hand');
 
@@ -69,8 +77,7 @@ getFirstCards()
 
   // Para ordenar la array
 shuffle(array) {
-
- array.sort(() => Math.random() - 0.5);
+array.sort(() => Math.random() - 0.5);
 }
 
 }
