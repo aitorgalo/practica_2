@@ -69,7 +69,8 @@ getFirstCards()
 
   // Para ordenar la array
 shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+
+ array.sort(() => Math.random() - 0.5);
 }
 
 }
