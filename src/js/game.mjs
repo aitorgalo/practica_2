@@ -42,24 +42,27 @@ class Game {
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
-		canvas.width = (245 * 7) * 0.8;
+		canvas.width = (245 * 20) * 0.8;
 		canvas.height = (342 * 2) * 0.8;
 		var ctx = canvas.getContext("2d");
 
 		// Get Hands
 		for (let j = 0; j < hands.length; j++) {
 
-			// Get All Cards in Hand
-			let pokemon_hands = hands[j].cards.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon');
-			for (let i = 0; i < pokemon_hands.length; i++) {
+			// Counter
+			let i = 0;
+
+			// Get All Pokemon Cards in Hand
+			hands[j].cards.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon').sort(card => card.name).forEach(element => {
 
 				// Get Image
-				var image = document.getElementById('img_' + pokemon_hands[i].image);
+				var image = document.getElementById('img_' + element.image);
 
 				// Enemy Cards
-				ctx.drawImage(image, (245 * 0.80) * (i), ( 342 * 0.80 ) * j , 245 * 0.80, 342 * 0.80);
+				ctx.drawImage(image, (245 * 0.80) * (i), (342 * 0.80) * j, 245 * 0.80, 342 * 0.80);
+				i++;
 
-			}
+			});
 
 		}
 
