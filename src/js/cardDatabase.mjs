@@ -44,7 +44,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 1,
-    "prevolution" : "Charmander",
+    "prevolution": "Charmander",
     "cards_deck": 1
   },
 
@@ -65,7 +65,7 @@ var cardDatabase = [
     "weakness": "water",
     "strong": "fight",
     "retire": 3,
-    "prevolution" : "Charmeleon",
+    "prevolution": "Charmeleon",
     "cards_deck": 1
   },
 
@@ -108,7 +108,7 @@ var cardDatabase = [
     ],
     "weakness": "water",
     "retire": 2,
-    "prevolution" : "Growlithe",
+    "prevolution": "Growlithe",
     "cards_deck": 1
   },
 

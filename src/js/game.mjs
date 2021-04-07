@@ -13,21 +13,17 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(this.gui); this.draw(this.hands); break;
-			case "draw": this.draw(this.hands); break;
-			case "clean": this.gui.clean(); break;
-			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
+			case "start": this.initGame(input, output); this.draw(this.hands); break;
 			case "print": console.log(this.hands); break;
 			case "clear": console.clear(); break;
-
-			default:
+			default: this.readGameState(input, output);
 
 		}
 
 	}
 
 	// Give Cards to users again
-	initGame() {
+	initGame(input, output) {
 
 		// Create New Hand of Cards (For Player 1 and Player 2)
 		this.hands = [new Hand(cardDatabase), new Hand(cardDatabase)];
@@ -36,8 +32,29 @@ class Game {
 		this.hands[0].getFirstCards();
 		this.hands[1].getFirstCards();
 
+		// Init Turnos
+		this.turno = 0;
+
+		// Read Game State
+		this.readGameState(input, output);
+
 	}
 
+	// To Show Options to User
+	readGameState(input, output) {
+
+		// First Turno
+		output.innerHTML = 'Escoge Pokemon Activo jugador 1:';
+		let i = 0;
+		this.hands[0].cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+			i++;
+			output.innerHTML += `<br>${i}) ` + card.name;
+		});
+
+
+	}
+
+	// To Draw Cards to User
 	draw(hands) {
 
 		// Get Canvas
@@ -65,9 +82,6 @@ class Game {
 			});
 
 		}
-
-		// My Cards
-		// ctx.drawImage(image, 0, 342 * 0.80 , 245 * 0.80 , 342 * 0.80 );
 	}
 
 }

@@ -58,27 +58,25 @@ class Hand {
     }
   }
 
-getFirstCards()
-{
-  // Shuffle Cards First Time
-  this.shuffle(this.cards);
-
-  // Check First 7 Cards 1 base Pokemon
-  while ( this.cards.slice(0, 7).filter(card => card.type === 'pokemon').filter(card => card.prevolution === undefined).length == 0 )
-  {
-    // Order Again
+  getFirstCards() {
+    // Shuffle Cards First Time
     this.shuffle(this.cards);
+
+    // Check First 7 Cards 1 base Pokemon
+    while (this.cards.slice(0, 7).filter(card => card.type === 'pokemon' && card.prevolution === undefined).length == 0) {
+      // Order Again
+      this.shuffle(this.cards);
+    }
+
+    // Get First 7 Cards
+    this.cards.slice(0, 7).map(card => card.status = 'hand');
+
   }
 
-  // Get First 7 Cards
-  this.cards.slice(0, 7).map(card => card.status = 'hand');
-
-}
-
   // Para ordenar la array
-shuffle(array) {
-array.sort(() => Math.random() - 0.5);
-}
+  shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
 
 }
 
