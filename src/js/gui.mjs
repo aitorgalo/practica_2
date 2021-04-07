@@ -11,14 +11,14 @@ class GUI {
         // Canvas
         let canvas = document.createElement("canvas");
         canvas.id = "canvas";
-        canvas.width = (245 * 7) * 0.8;
-        canvas.height = (342 * 2) * 0.8;
+        canvas.width = 0;
+        canvas.height = 0;
         document.getElementsByTagName('body')[0].appendChild(canvas);
 
         // Output
         let output = document.createElement("div");
         output.id = "output";
-        output.innerHTML = "Empieza el juego !";
+        output.innerHTML = "Bienvenid@ ! Escribe start para empezar !";
         document.getElementsByTagName('body')[0].appendChild(output);
 
         // Input

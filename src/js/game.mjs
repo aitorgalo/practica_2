@@ -8,18 +8,17 @@ class Game {
 	constructor(gui) {
 		this.gui = gui;
 		this.gui.initGUI(this);
-		this.initGame(this.gui);
 	}
 
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "draw": this.draw(this.hand_player.cards,this.hand_machine.cards); break;
+			case "start": this.initGame(this.gui); this.draw(this.hand_player.cards, this.hand_machine.cards);
+			case "draw": this.draw(this.hand_player.cards, this.hand_machine.cards); break;
 			case "clean": this.gui.clean(); break;
 			case "shuffle": Hand.shuffle(this.hand_player.cards); break;
 			case "print": console.log(this.hand_player.cards); console.log(this.hand_machine.cards); break;
 			case "clear": console.clear(); break;
-			case "start": this.initGame(this.gui);
 
 			default:
 
@@ -46,26 +45,31 @@ class Game {
 
 	}
 
-	draw(cards_player , cards_machine) {
+	draw(cards_player, cards_machine) {
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
+		canvas.width = (245 * 7) * 0.8;
+		canvas.height = (342 * 2) * 0.8;
 		var ctx = canvas.getContext("2d");
-		
+
 		// Delete Old Content
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		// Get All Cards in Hand
-console.log(cards_player.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon'));
+		let pokemon_hands = cards_player.filter(card => card.status === 'hand').filter(card => card.type === 'pokemon');
+		for (let i = 0; i < pokemon_hands.length; i++) {
 
+			// Get Image
+			var image = document.getElementById('img_' + pokemon_hands[i].image);
 
-		var image = document.getElementById('img_2');
+			// Enemy Cards
+			ctx.drawImage(image, ( 245 * 0.80 ) * (i) , 0 , 245 * 0.80, 342 * 0.80);
 
-		// Enemy Cards
-		ctx.drawImage(image, 0, 0, 245 * 0.80 , 342 * 0.80);
+		}
 
 		// My Cards
-		ctx.drawImage(image, 0, 342 * 0.80 , 245 * 0.80 , 342 * 0.80 );
+		// ctx.drawImage(image, 0, 342 * 0.80 , 245 * 0.80 , 342 * 0.80 );
 	}
 
 }
