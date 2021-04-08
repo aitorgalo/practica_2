@@ -63,7 +63,7 @@ class Game {
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
 		canvas.width = (245 * 20) * 0.8;
-		canvas.height = ( (342 * 2) * 0.8 ) + 50;
+		canvas.height = ((342 * 2) * 0.8) + 50;
 		var ctx = canvas.getContext("2d");
 		let column = 0;
 		let row = 0;
@@ -74,23 +74,25 @@ class Game {
 
 				console.log(hand);
 				// Get All Pokemon Cards in Hand
-				hand.cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand')).sort((a, b) => b.type.localeCompare(a.type)).forEach(card => {
+				hand.cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand'))
+				.sort((a, b) => b.type.localeCompare(a.type) || b.status.localeCompare(a.status) )  
+				.forEach(card => {
 
-					// Get Image
-					var image = document.getElementById('img_' + card.image);
+						// Get Image
+						var image = document.getElementById('img_' + card.image);
 
-					// Info Text
+						// Info Text
 
-					// Enemy Cards
-					ctx.drawImage(image, (245 * 0.80) * (column), ( (342 * 0.80) * row ), 245 * 0.80, 342 * 0.80);
+						// Enemy Cards
+						ctx.drawImage(image, (245 * 0.80) * (column), ((342 * 0.80) * row), 245 * 0.80, 342 * 0.80);
 
-					// Draw Text
-					ctx.fillText(card.status, (245 * 0.80) * (column) + 50, ( (342 * 0.80) * row ) + 10);
+						// Draw Text
+						ctx.fillText(card.status, (245 * 0.80) * (column) + 50, ((342 * 0.80) * row) + 10);
 
-					// Next Column
-					column++;
+						// Next Column
+						column++;
 
-				});
+					});
 
 				// Next Row
 				row++;
