@@ -37,11 +37,14 @@ class Card {
 // Constructor Hand
 class Hand {
 
-  // Init Cards
-  cards = [];
-
   // To create Hand
-  constructor(cardDatabase) {
+  constructor(cardDatabase, name) {
+
+    // Set Values
+    this.name = name;
+    this.cards = [];
+    this.status = 'start';
+
     // Añado todas las Cards a mi array
     for (let card_count = 0; card_count < cardDatabase.length; card_count++) {
 
@@ -76,18 +79,18 @@ class Hand {
   firstTurno(input, output) {
     // First Turno
     if (this.cards.filter(card => card.status === 'fight').length != 1) {
-      output.innerHTML = 'Escoge Pokemon Activo jugador 1:';
-      let i = 0;
+      output.innerHTML = `Escoge Pokemon Activo ${this.name}:`;
+
+      // Get Options
+      let accion = 0;
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-        i++;
-        output.innerHTML += `<br>${i}) ` + card.name;
-        if (i == input) {
+        output.innerHTML += `<br>${++accion}) ` + card.name;
+        if (accion == input) {
           card.status = 'fight';
         }
       });
     }
-    else
-    {
+    else {
       this.firstTurnoDock(input, output);
     }
   }
@@ -96,14 +99,20 @@ class Hand {
 
     // Set banquillo
     if (this.cards.filter(card => card.status === 'fight').length == 1) {
-      output.innerHTML = 'Escoge Pokemon Banquillo jugador 1:';
-      output.innerHTML += `<br>0) Saltar turno`;
+      output.innerHTML = `Escoge Pokemon Banquillo ${this.name}:`;
+      output.innerHTML += `<br>1) Saltar turno`;
 
-      let i = 0;
+      // Saltar
+      if (input == 1) {
+        // Set Status Playing
+        this.status = 'playing';
+      }
+
+      // Get Options
+      let accion = 1;
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-        i++;
-        output.innerHTML += `<br>${i}) ` + card.name;
-        if (i == input) {
+        output.innerHTML += `<br>${++accion}) ` + card.name;
+        if (accion == input) {
           card.status = 'dock';
         }
       });
@@ -112,15 +121,67 @@ class Hand {
   }
 
 
+  turno(input, output) {
+
+    // Escoger Accion
+    output.innerHTML = `Escoge Acción ${this.name}:`;
+    let accion = 0;
+
+    // Robar Carta de Deck a Hand x 1
+    if (this.cards.filter(card => card.status === 'hand').length < 7) {
+      output.innerHTML += `<br>${++accion}) Coger carta`;
+      if (accion == input) {
+        if (this.cards.filter(card => card.status === 'deck').length > 0)
+        this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
+      }
+    }
+
+    // Colocar Pokemon hand a dock x N
+    this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+      output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
+      if (accion == input) {
+        card.status = 'dock';
+      }
+    });
+
+    // Evolucionar Pokemon x N
+    this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution !== undefined).forEach(card => {
+      output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + card.name;
+      if (accion == input) {
+        card.status = 'dock';
+      }
+    });
+
+    // Unir Carta energía x 1
+    this.cards.filter(card => card.status === 'hand' && card.type === 'energy').forEach(card => {
+      output.innerHTML += `<br>${++accion}) Unir energía ` + card.name;
+      if (accion == input) {
+        card.status = 'dock';
+      }
+    });
+
+    // Jugar Carta Entrenador x N
+
+
+    // Retirar Pokemon x 1
+    this.cards.filter(card => card.status === 'fight').forEach(card => {
+      output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name;
+      if (accion == input) {
+        card.status = 'dock';
+      }
+    });
+
+    // Utilizar Habilidades x N
 
 
 
 
+    // Atacar
 
 
 
 
-
+  }
 
   // Para ordenar la array
   shuffle(array) {

@@ -13,10 +13,10 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(input, output); this.draw(this.hands); break;
+			case "start": this.initGame(input, output); /* this.draw(this.hands); */ break;
 			case "print": console.log(this.hands); break;
 			case "clear": console.clear(); break;
-			default: this.readGameState(input, output);  this.readGameState("", output);
+			default: this.readGameState(input, output);  /* this.draw(this.hands); */ this.readGameState("", output);
 
 		}
 
@@ -26,7 +26,7 @@ class Game {
 	initGame(input, output) {
 
 		// Create New Hand of Cards (For Player 1 and Player 2)
-		this.hands = [new Hand(cardDatabase), new Hand(cardDatabase)];
+		this.hands = [new Hand(cardDatabase, "Player 1"), new Hand(cardDatabase, "Player 2")];
 
 		// Get First 7 Cards
 		this.hands[0].getFirstCards();
@@ -44,7 +44,18 @@ class Game {
 	readGameState(input, output) {
 
 		// Set Active Pokemon Player 1
-		this.hands[0].firstTurno(input , output);
+		if (this.hands[0].status === 'start') {
+			this.hands[0].firstTurno(input, output);
+		}
+		else
+			// Set Active Pokemon Player 1
+			if (this.hands[1].status === 'start') {
+				this.hands[1].firstTurno(input, output);
+			}
+			// Turno Normal
+			else {
+				this.hands[0].turno(input, output);
+			}
 
 
 
@@ -53,7 +64,7 @@ class Game {
 	// To Draw Cards to User
 	draw(hands) {
 
-		/*
+
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
@@ -81,7 +92,7 @@ class Game {
 
 		}
 
-		*/
+
 
 	}
 
