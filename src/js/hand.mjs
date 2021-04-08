@@ -101,25 +101,29 @@ class Hand {
 
   firstTurnoDock(input, output) {
 
+    // Escoger Accion
+    output.innerHTML = `Escoge Pokemon Banquillo ${this.name}:`;
+    let accion = 0;
+
     // Set banquillo
     if (this.cards.filter(card => card.status === 'fight').length == 1) {
-      output.innerHTML = `Escoge Pokemon Banquillo ${this.name}:`;
-      output.innerHTML += `<br>1) Saltar turno`;
-
-      // Saltar
-      if (input == 1) {
-        // Set Status Playing
-        this.status = 'playing';
-      }
+  
 
       // Get Options
-      let accion = 1;
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
         output.innerHTML += `<br>${++accion}) ` + card.name;
         if (accion == input) {
           card.status = 'dock';
         }
       });
+    }
+
+    // Saltar Turno
+    output.innerHTML += `<br>${++accion}) Saltar turno`;
+    // Saltar
+    if (accion == input) {
+      // Set Status Playing
+      this.status = 'playing';
     }
 
   }
@@ -140,7 +144,8 @@ class Hand {
       }
     }
 
-    // Colocar Pokemon hand a dock x N
+    // Colocar Pokemon hand a dock (Màx 5) x N
+    if(this.cards.filter(card => card.status === 'dock').length < 5)
     this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
       output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
       if (accion == input) {
@@ -183,6 +188,7 @@ class Hand {
 
 
     // Retirar Pokemon x 1
+    if(this.cards.filter(card => card.status === 'dock').length < 5)
     this.cards.filter(card => card.status === 'fight').forEach(card => {
       output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name;
       if (accion == input) {

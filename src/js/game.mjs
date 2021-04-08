@@ -13,10 +13,10 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(input, output); /* this.draw(this.hands); */ break;
+			case "start": this.initGame(input, output);  this.draw(this.hands);  break;
 			case "print": console.log(this.hands); break;
 			case "clear": console.clear(); break;
-			default: this.readGameState(input, output);  /* this.draw(this.hands); */ this.readGameState("", output);
+			default: this.readGameState(input, output);   this.draw(this.hands); this.readGameState("", output);
 
 		}
 
@@ -57,14 +57,10 @@ class Game {
 				this.hands[0].turno(input, output);
 			}
 
-
-
 	}
 
 	// To Draw Cards to User
 	draw(hands) {
-
-
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
@@ -91,8 +87,6 @@ class Game {
 			});
 
 		}
-
-
 
 	}
 
