@@ -154,6 +154,7 @@ class Hand {
 
   }
 
+  // Acciones Principales
   turno(input, output) {
 
     // Escoger Accion
@@ -169,7 +170,17 @@ class Hand {
       }
     }
 
+    // Colocar Pokemon dock a fight
+    if (this.cards.filter(card => card.status === 'fight').length == 0)
+    this.cards.filter(card => card.status === 'dock' && card.type === 'pokemon').forEach(card => {
+      output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
+      if (accion == input) {
+        card.status = 'fight';
+      }
+    });
+
     // Colocar Pokemon hand a dock (Màx 5) x N
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
     if (this.cards.filter(card => card.status === 'dock').length < 5)
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
         output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
@@ -179,9 +190,12 @@ class Hand {
       });
 
     // Evolucionar Pokemon x N
-    this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined).forEach(cardEvolution => {
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
+    this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
+    .sort((a, b) => b.order() - a.order() ).forEach(cardEvolution => {
       // Sólo si tengo el Pokemon en Fight o Dock
-      this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution).forEach(cardBase => {
+      this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
+      .sort((a, b) => b.order() - a.order() ).forEach(cardBase => {
 
         output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
         if (accion == input) {
@@ -201,10 +215,12 @@ class Hand {
 
     // Unir Carta energía x 1
     let combinacion = [];
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
     this.cards.filter(card => card.status === 'hand' && card.type === 'energy').forEach(card => {
 
       // Obtener Pokemons de Dock y Fight
-      this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon').forEach(cardPokemon => {
+      this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
+      .sort((a, b) => b.order() - a.order() ).forEach(cardPokemon => {
 
         // To not Repeat Combination
         if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
@@ -227,6 +243,7 @@ class Hand {
 
 
     // Retirar Pokemon x 1
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
     if (this.cards.filter(card => card.status === 'dock').length < 5)
       this.cards.filter(card => card.status === 'fight').forEach(card => {
         output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name;
