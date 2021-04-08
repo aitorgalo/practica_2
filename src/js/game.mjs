@@ -16,7 +16,7 @@ class Game {
 			case "start": this.initGame(input, output); this.draw(this.hands); break;
 			case "print": console.log(this.hands); break;
 			case "clear": console.clear(); break;
-			default: this.readGameState(input, output);
+			default: this.readGameState(input, output);  this.readGameState("", output);
 
 		}
 

@@ -86,6 +86,10 @@ class Hand {
         }
       });
     }
+    else
+    {
+      this.firstTurnoDock(input, output);
+    }
   }
 
   firstTurnoDock(input, output) {
@@ -93,6 +97,8 @@ class Hand {
     // Set banquillo
     if (this.cards.filter(card => card.status === 'fight').length == 1) {
       output.innerHTML = 'Escoge Pokemon Banquillo jugador 1:';
+      output.innerHTML += `<br>0) Saltar turno`;
+
       let i = 0;
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
         i++;
