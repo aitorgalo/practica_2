@@ -12,7 +12,7 @@ class Card {
     //Position of the Card (for the image)
     this.image = image;
 
-    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
+    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada) . dead (Fuera de combate)
     this.status = 'deck';
 
     // Get Card Prototype Values
@@ -107,7 +107,7 @@ class Hand {
 
     // Set banquillo
     if (this.cards.filter(card => card.status === 'fight').length == 1) {
-  
+
 
       // Get Options
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
@@ -128,7 +128,6 @@ class Hand {
 
   }
 
-
   turno(input, output) {
 
     // Escoger Accion
@@ -145,20 +144,33 @@ class Hand {
     }
 
     // Colocar Pokemon hand a dock (Màx 5) x N
-    if(this.cards.filter(card => card.status === 'dock').length < 5)
-    this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-      output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
-      if (accion == input) {
-        card.status = 'dock';
-      }
-    });
+    if (this.cards.filter(card => card.status === 'dock').length < 5)
+      this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+        output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name;
+        if (accion == input) {
+          card.status = 'dock';
+        }
+      });
 
     // Evolucionar Pokemon x N
-    this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution !== undefined).forEach(card => {
-      output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + card.name;
-      if (accion == input) {
-        card.status = 'dock';
-      }
+    this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined).forEach(cardEvolution => {
+      // Sólo si tengo el Pokemon en Fight o Dock
+      this.cards.filter(cardBase => ( cardBase.status === 'fight' || cardBase.status === 'dock' ) && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution).forEach(cardBase => {
+
+        output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
+        if (accion == input) {
+         // Set Pokemon New
+         cardEvolution.status = cardBase.status;
+
+         // Set Pokemon Old
+         cardBase.status = 'discard';
+
+
+
+        }
+
+      })
+
     });
 
     // Unir Carta energía x 1
@@ -169,7 +181,7 @@ class Hand {
       this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon').forEach(cardPokemon => {
 
         // To not Repeat Combination
-        if (! combinacion.includes(card.nature + "_" + cardPokemon.id)) {
+        if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
           output.innerHTML += `<br>${++accion}) Unir energía ` + card.name + ` a ` + cardPokemon.name;
           if (accion == input) {
             card.status = 'discard';
@@ -187,14 +199,15 @@ class Hand {
     // Jugar Carta Entrenador x N
 
 
+
     // Retirar Pokemon x 1
-    if(this.cards.filter(card => card.status === 'dock').length < 5)
-    this.cards.filter(card => card.status === 'fight').forEach(card => {
-      output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name;
-      if (accion == input) {
-        card.status = 'dock';
-      }
-    });
+    if (this.cards.filter(card => card.status === 'dock').length < 5)
+      this.cards.filter(card => card.status === 'fight').forEach(card => {
+        output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name;
+        if (accion == input) {
+          card.status = 'dock';
+        }
+      });
 
     // Utilizar Habilidades x N
 
