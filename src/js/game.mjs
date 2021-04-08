@@ -13,10 +13,11 @@ class Game {
 	sendCommand(input, output) {
 
 		switch (input) {
-			case "start": this.initGame(input, output);  this.draw(this.hands);  break;
+			case "start": this.initGame(input, output); this.draw(this.hands); break;
 			case "print": console.log(this.hands); break;
+			case "draw": this.draw(this.hands);
 			case "clear": console.clear(); break;
-			default: this.readGameState(input, output);   this.draw(this.hands); this.readGameState("", output);
+			default: this.readGameState(input, output); this.readGameState("", output); this.draw(this.hands);
 
 		}
 
@@ -75,13 +76,21 @@ class Game {
 			let i = 0;
 
 			// Get All Pokemon Cards in Hand
-			hands[j].cards.filter(card => ( card.status === 'fight' || card.status === 'dock' ||  card.status === 'hand' )).sort((a, b) => b.type.localeCompare(a.type)).forEach(card => {
+			hands[j].cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand')).sort((a, b) => b.type.localeCompare(a.type)).forEach(card => {
 
 				// Get Image
 				var image = document.getElementById('img_' + card.image);
 
+				// Info Text
+
+
 				// Enemy Cards
 				ctx.drawImage(image, (245 * 0.80) * (i), (342 * 0.80) * j, 245 * 0.80, 342 * 0.80);
+
+				// Draw Text
+				ctx.fillText(card.status, (245 * 0.80) * (i), (342 * 0.80) * j);
+
+				// Next Card
 				i++;
 
 			});

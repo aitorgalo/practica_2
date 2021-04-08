@@ -407,28 +407,28 @@ var cardDatabase = [
   },
 
   {
-    "type": "inventory",
+    "type": "consumable",
     "name": "Pista del Profesor Oak",
     "effect": "steal 7 end turn",
     "cards_deck": 1
   },
 
   {
-    "type": "inventory",
+    "type": "consumable",
     "name": "Cambio",
     "effect": "change active dock",
     "cards_deck": 2
   },
 
   {
-    "type": "inventory",
+    "type": "consumable",
     "name": "Poción",
     "effect": "heal 30",
     "cards_deck": 3
   },
 
   {
-    "type": "inventory",
+    "type": "consumable",
     "name": "Cura Total",
     "effect": "heal effects",
     "cards_deck": 2
