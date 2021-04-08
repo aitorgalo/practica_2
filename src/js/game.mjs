@@ -63,9 +63,9 @@ class Game {
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
 		canvas.width = (245 * 20) * 0.8;
-		canvas.height = (342 * 2) * 0.8;
+		canvas.height = ( (342 * 2) * 0.8 ) + 50;
 		var ctx = canvas.getContext("2d");
-		let column= 0;
+		let column = 0;
 		let row = 0;
 
 		// Get Hands
@@ -81,21 +81,20 @@ class Game {
 
 					// Info Text
 
-
 					// Enemy Cards
-					ctx.drawImage(image, (245 * 0.80) * (column), (342 * 0.80) * row, 245 * 0.80, 342 * 0.80);
+					ctx.drawImage(image, (245 * 0.80) * (column), ( (342 * 0.80) * row ), 245 * 0.80, 342 * 0.80);
 
 					// Draw Text
-					ctx.fillText(card.status, (245 * 0.80) * (column), (342 * 0.80) * row);
+					ctx.fillText(card.status, (245 * 0.80) * (column) + 50, ( (342 * 0.80) * row ) + 10);
 
 					// Next Column
 					column++;
 
 				});
 
-// Next Row
-row++;
-column = 0;
+				// Next Row
+				row++;
+				column = 0;
 
 			}
 
