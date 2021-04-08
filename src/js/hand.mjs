@@ -35,6 +35,32 @@ class Card {
 
   }
 
+  order() {
+
+    // Orden
+    let orden = 0;
+
+    // Order by Type
+    switch (this.type) {
+      case 'pokemon': orden += 10;
+      case 'energy': orden += 20;
+      case 'object': orden += 30;
+    }
+
+    // Order by Status
+    switch (this.status) {
+      case 'fight': orden += 1;
+      case 'dock': orden += 2;
+      case 'hand': orden += 3;;
+      case 'deck': orden += 4;
+      case 'discard': orden += 5;
+      case 'dead': orden += 6;
+    }
+
+    return orden;
+
+  }
+
 }
 
 // Constructor Hand
@@ -155,15 +181,15 @@ class Hand {
     // Evolucionar Pokemon x N
     this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined).forEach(cardEvolution => {
       // Sólo si tengo el Pokemon en Fight o Dock
-      this.cards.filter(cardBase => ( cardBase.status === 'fight' || cardBase.status === 'dock' ) && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution).forEach(cardBase => {
+      this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution).forEach(cardBase => {
 
         output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
         if (accion == input) {
-         // Set Pokemon New
-         cardEvolution.status = cardBase.status;
+          // Set Pokemon New
+          cardEvolution.status = cardBase.status;
 
-         // Set Pokemon Old
-         cardBase.status = 'discard';
+          // Set Pokemon Old
+          cardBase.status = 'discard';
 
 
 

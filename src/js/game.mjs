@@ -72,10 +72,9 @@ class Game {
 		hands.forEach(
 			hand => {
 
-				console.log(hand);
 				// Get All Pokemon Cards in Hand
 				hand.cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand'))
-				.sort((a, b) => b.type.localeCompare(a.type) || b.status.localeCompare(a.status) )  
+				.sort((a, b) => b.order() - a.order() ) 
 				.forEach(card => {
 
 						// Get Image
