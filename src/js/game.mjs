@@ -52,7 +52,23 @@ class Game {
 			}
 			// Turno Normal
 			else {
-				this.hands[0].turno(input, output);
+
+				// If Everybody Next Restart Turn
+				if (this.hands[0].status === 'next' && this.hands[1].status === 'next') {
+					this.hands[0].status = 'playing';
+					this.hands[1].status = 'playing';
+				}
+
+
+				// If Everybody Plays . Plays Player 1
+				if (this.hands[0].status === 'playing' && this.hands[1].status === 'playing')
+					this.hands[0].turno(input, output);
+				else
+					if (this.hands[0].status === 'next' && this.hands[1].status === 'playing')
+						this.hands[1].turno(input, output);
+
+
+
 			}
 
 	}
@@ -74,8 +90,8 @@ class Game {
 
 				// Get All Pokemon Cards in Hand
 				hand.cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand'))
-				.sort((a, b) => b.order() - a.order() ) 
-				.forEach(card => {
+					.sort((a, b) => b.order() - a.order())
+					.forEach(card => {
 
 						// Get Image
 						var image = document.getElementById('img_' + card.image);
