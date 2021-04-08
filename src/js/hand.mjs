@@ -4,10 +4,13 @@ import { cardDatabase } from './cardDatabase.mjs';
 // Constructor Card
 class Card {
 
-  constructor(cardPrototype, position) {
+  constructor(cardPrototype, image, id) {
+
+    // Id of the Card (for equality)
+    this.id = id;
 
     //Position of the Card (for the image)
-    this.image = position;
+    this.image = image;
 
     // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada)
     this.status = 'deck';
@@ -46,13 +49,14 @@ class Hand {
     this.status = 'start';
 
     // Añado todas las Cards a mi array
+    let id = 0;
     for (let card_count = 0; card_count < cardDatabase.length; card_count++) {
 
       // Repito las cartas según mazo
       for (let index = 1; index <= cardDatabase[card_count].cards_deck; index++) {
 
         // Objeto Card
-        var card = new Card(cardDatabase[card_count], card_count + 1);
+        var card = new Card(cardDatabase[card_count], card_count + 1, ++id);
 
         // Pongo Carta en Array
         this.cards.push(card);
@@ -132,7 +136,7 @@ class Hand {
       output.innerHTML += `<br>${++accion}) Coger carta`;
       if (accion == input) {
         if (this.cards.filter(card => card.status === 'deck').length > 0)
-        this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
+          this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
       }
     }
 
@@ -153,11 +157,26 @@ class Hand {
     });
 
     // Unir Carta energía x 1
+    let combinacion = [];
     this.cards.filter(card => card.status === 'hand' && card.type === 'energy').forEach(card => {
-      output.innerHTML += `<br>${++accion}) Unir energía ` + card.name;
-      if (accion == input) {
-        card.status = 'dock';
-      }
+
+      // Obtener Pokemons de Dock y Fight
+      this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon').forEach(cardPokemon => {
+
+        // To not Repeat Combination
+        if (! combinacion.includes(card.nature + "_" + cardPokemon.id)) {
+          output.innerHTML += `<br>${++accion}) Unir energía ` + card.name + ` a ` + cardPokemon.name;
+          if (accion == input) {
+            card.status = 'discard';
+          }
+
+          // Put Combination in Array
+          combinacion.push(card.nature + "_" + cardPokemon.id);
+
+        }
+
+      })
+
     });
 
     // Jugar Carta Entrenador x N
