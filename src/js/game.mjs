@@ -43,19 +43,17 @@ class Game {
 	// To Show Options to User
 	readGameState(input, output) {
 
-		// First Turno
-		output.innerHTML = 'Escoge Pokemon Activo jugador 1:';
-		let i = 0;
-		this.hands[0].cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-			i++;
-			output.innerHTML += `<br>${i}) ` + card.name;
-		});
+		// Set Active Pokemon Player 1
+		this.hands[0].firstTurno(input , output);
+
 
 
 	}
 
 	// To Draw Cards to User
 	draw(hands) {
+
+		/*
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
@@ -82,6 +80,9 @@ class Game {
 			});
 
 		}
+
+		*/
+
 	}
 
 }

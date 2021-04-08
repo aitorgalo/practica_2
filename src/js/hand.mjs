@@ -73,6 +73,49 @@ class Hand {
 
   }
 
+  firstTurno(input, output) {
+    // First Turno
+    if (this.cards.filter(card => card.status === 'fight').length != 1) {
+      output.innerHTML = 'Escoge Pokemon Activo jugador 1:';
+      let i = 0;
+      this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+        i++;
+        output.innerHTML += `<br>${i}) ` + card.name;
+        if (i == input) {
+          card.status = 'fight';
+        }
+      });
+    }
+  }
+
+  firstTurnoDock(input, output) {
+
+    // Set banquillo
+    if (this.cards.filter(card => card.status === 'fight').length == 1) {
+      output.innerHTML = 'Escoge Pokemon Banquillo jugador 1:';
+      let i = 0;
+      this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+        i++;
+        output.innerHTML += `<br>${i}) ` + card.name;
+        if (i == input) {
+          card.status = 'dock';
+        }
+      });
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
   // Para ordenar la array
   shuffle(array) {
     array.sort(() => Math.random() - 0.5);
