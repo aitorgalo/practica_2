@@ -355,7 +355,7 @@ var cardDatabase = [
         "name": "Sumisión",
         "cost": ["fight", "fight", "fight"],
         "damage": 80,
-        "effect": "auto attack 20"
+        "effect": "autoattack 20"
       }
     ],
     "weak": "psychic",

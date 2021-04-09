@@ -12,7 +12,7 @@ class Card {
     //Position of the Card (for the image)
     this.image = image;
 
-    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada) . dead (Fuera de combate) . prize (Carta de Premio)
+    // Status . fight (Pokemon en Batalla) . dock (Pokemon en Banquillo) . hand (Carta en Mano) . deck (Carta en Mazo) . discard (Carta Utilizada descartada) . prize (Carta de Premio)
     this.status = 'deck';
 
     // Get Card Prototype Values
@@ -167,7 +167,7 @@ class Hand {
   }
 
   // Acciones Principales
-  turno(input, output) {
+  turno(input, output, hand_rival) {
 
     // Escoger Accion
     output.innerHTML = `Escoge Acción ${this.name}:`;
@@ -182,6 +182,49 @@ class Hand {
         this.robar = false;
       }
     }
+
+    // Atacar
+    if (this.robar != true)
+      this.cards.filter(card => card.status === 'fight').forEach(card => {
+
+        // Pongo Cada Ataque disponible
+        card.attacks.forEach(attack => {
+
+          // Sólo si tengo suficiente energía
+
+          
+          output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
+
+          // Si puedo Atacar
+          if (accion == input) {
+
+            // Quito la vida al rival
+            hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
+
+            // Quito Energía
+            attack.cost.forEach(cost => {
+
+              // Remove Energy for the attack cost
+              if (cost === 'any')
+                delete card.energy[0];
+              else
+                delete card.energy[card.energy.indexOf(cost)];
+
+            });
+
+            // Efectos
+
+
+            // Si muere Rival lo descarto
+            hand_rival.cards.filter(cardRival => cardRival.status === 'fight')
+              .filter(cardRival => cardRival.vitality_now <= 0).map(cardRival => cardRival.status = 'discard');
+
+            // Paso turno
+            this.status = "next";
+
+          }
+        });
+      });
 
     // Retirar Pokemon x 1
     if (this.robar != true)
@@ -242,7 +285,7 @@ class Hand {
     let combinacion = [];
     if (this.robar != true)
       if (this.energy == true)
-        this.cards.filter(card => card.status === 'hand' && card.type === 'energy').forEach(card => {
+        this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
 
           // Obtener Pokemons de Dock y Fight
           this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
@@ -277,12 +320,6 @@ class Hand {
 
 
     // Utilizar Habilidades x N
-
-
-
-
-    // Atacar
-
 
     // Pasar Turno (sólo si hay algún activo luchando)
     if (this.robar != true)

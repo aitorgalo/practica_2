@@ -71,10 +71,10 @@ class Game {
 
 				// If Everybody Plays . Plays Player 1
 				if (this.hands[0].status === 'playing' && this.hands[1].status === 'playing')
-					this.hands[0].turno(input, output);
+					this.hands[0].turno(input, output,this.hands[1]);
 				else
 					if (this.hands[0].status === 'next' && this.hands[1].status === 'playing')
-						this.hands[1].turno(input, output);
+						this.hands[1].turno(input, output,this.hands[0]);
 
 
 

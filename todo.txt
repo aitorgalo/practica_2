@@ -1,14 +1,35 @@
-ataques
+Sólo poner ataque si tengo la energía que necesito.
+// Attack Effect
+get 1 electric
+discard 1 fire
+discard 3 fire
+discard 1 energy rival
+discard all energy 70
+discard all energy
+change pokemon
+skip 1 turn
+random autoattack 10
+paralysis
+autoattack 50
+autoattack 80
+autoattack 90
+autoattack 20
+random paralysis
+attack 30 dock
+attack 20 self dock
+random 20 x 2
+auto 10 less
+60 x special energy
+
 cuando mato pongo 1 prize del rival en mi hand
-cartas entrenador
+
+// Objetos
+steal 7 end turn
+change active dock
+heal 30
+heal effects
+
 al evolucionar la vida se resta 
+Como restricción, un Pokémon no puede evolucionar en el mismo turno en que se le saca al campo o a la banca, ni tampoco puede evolucionar dos veces en el mismo turno.
 retire que valga energía
 paralizar
-Como restricción, un Pokémon no puede evolucionar en el mismo turno en que se le saca al campo o a la banca, ni tampoco puede evolucionar dos veces en el mismo turno.
-
-acabar printing v1 (done)
-sistema energías (done)
-ordenar energias (done)
-poner 6 cartas prize al principio partida (done)
-primer turno siempre se coge carta (done)
-sólo asignar 1 energía por turno (done)
