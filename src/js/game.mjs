@@ -55,8 +55,15 @@ class Game {
 
 				// If Everybody Next Restart Turn
 				if (this.hands[0].status === 'next' && this.hands[1].status === 'next') {
+					// Restar Stats Hand 1
 					this.hands[0].status = 'playing';
+					this.hands[0].robar = true;
+					this.hands[0].energy = true;
+
+					// Restar Stats Hand 2
 					this.hands[1].status = 'playing';
+					this.hands[1].robar = true;
+					this.hands[1].energy = true;
 				}
 
 

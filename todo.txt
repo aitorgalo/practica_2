@@ -1,1 +1,8 @@
 ordenar energias
+poner 6 cartas prize al principio partida (done)
+cuando mato pongo 1 prize del rival en mi hand
+ataques
+cartas entrenador
+retire que valga energía
+primer turno siempre se coge carta (done)
+sólo asignar 1 energía por turno (done)
