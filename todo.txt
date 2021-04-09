@@ -1,9 +1,11 @@
-sistema energías
+
+acabar printing
 ataques
 cuando mato pongo 1 prize del rival en mi hand
 cartas entrenador
 retire que valga energía
 
+sistema energías (done)
 ordenar energias (done)
 poner 6 cartas prize al principio partida (done)
 primer turno siempre se coge carta (done)

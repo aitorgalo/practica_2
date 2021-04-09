@@ -33,6 +33,9 @@ class Card {
     if (cardPrototype.retire !== undefined) this.retire = cardPrototype.retire;
     if (cardPrototype.prevolution !== undefined) this.prevolution = cardPrototype.prevolution;
 
+    // Energy (Only if Pokemon)
+    if(this.type === `pokemon`) this.energy = [];
+
   }
 
   order() {
@@ -180,16 +183,16 @@ class Hand {
 
     // Retirar Pokemon x 1
     if (this.robar != true)
-    if(this.retire == true)
-      if (this.cards.filter(card => card.status === 'fight').length == 1)
-        if (this.cards.filter(card => card.status === 'dock').length < 5)
-          this.cards.filter(card => card.status === 'fight').forEach(card => {
-            output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
-            if (accion == input) {
-              card.status = 'dock';
-              this.retire = false;
-            }
-          });
+      if (this.retire == true)
+        if (this.cards.filter(card => card.status === 'fight').length == 1)
+          if (this.cards.filter(card => card.status === 'dock').length < 5)
+            this.cards.filter(card => card.status === 'fight').forEach(card => {
+              output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
+              if (accion == input) {
+                card.status = 'dock';
+                this.retire = false;
+              }
+            });
 
     // Colocar Pokemon dock a fight
     if (this.robar != true)
@@ -247,7 +250,13 @@ class Hand {
               if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
                 output.innerHTML += `<br>${++accion}) Unir energía ` + card.name + ` a ` + cardPokemon.name;
                 if (accion == input) {
+                  // Discard Energy Card
                   card.status = 'discard';
+
+                  // Add Energy to Card
+                  cardPokemon.energy.push(card.nature);
+
+                  // Energy Turn is over
                   this.energy = false;
                 }
 

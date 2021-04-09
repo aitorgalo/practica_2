@@ -93,10 +93,12 @@ class Game {
 		let column = 0;
 		let row = 0;
 
+		// Font Size
+		ctx.font = "15px Georgia";
+
 		// Get Hands
 		hands.forEach(
 			hand => {
-
 				// Get All Pokemon Cards in Hand
 				hand.cards.filter(card => (card.status === 'fight' || card.status === 'dock' || card.status === 'hand'))
 					.sort((a, b) => b.order() - a.order())
@@ -105,18 +107,24 @@ class Game {
 						// Get Image
 						var image = document.getElementById('img_' + card.image);
 
-						// Info Text
+						// Card Image
+						ctx.drawImage(image, (245 * 0.80) * (column), ((342 * 0.80) * row) , ( 245 * 0.80 ) , ( 342 * 0.80 ));
 
-						// Enemy Cards
-						ctx.drawImage(image, (245 * 0.80) * (column), ((342 * 0.80) * row), 245 * 0.80, 342 * 0.80);
+						// Info Text
+						if (card.type === 'pokemon')
+							ctx.fillText(card.vitality_now + ' PS', (245 * 0.80) * (column) , ((342 * 0.80) * row) );
 
 						// Draw Text
-						ctx.fillText(card.status, (245 * 0.80) * (column) + 50, ((342 * 0.80) * row) + 10);
+						ctx.fillText(card.status, (245 * 0.80) * (column), ((342 * 0.80) * row));
 
 						// Next Column
 						column++;
 
 					});
+
+				// Print Extra Deck Fields
+				// Draw Text
+				ctx.fillText(hand.name, 0, ((342 * 0.80) * row) );
 
 				// Next Row
 				row++;
