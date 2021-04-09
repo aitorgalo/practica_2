@@ -1,10 +1,11 @@
-
-acabar printing
 ataques
 cuando mato pongo 1 prize del rival en mi hand
 cartas entrenador
 retire que valga energía
+paralizar
 
+
+acabar printing v1 (done)
 sistema energías (done)
 ordenar energias (done)
 poner 6 cartas prize al principio partida (done)

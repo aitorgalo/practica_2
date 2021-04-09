@@ -88,13 +88,14 @@ class Game {
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
 		canvas.width = (245 * 20) * 0.8;
-		canvas.height = ((342 * 2) * 0.8) + 50;
+		canvas.height = ((342 * 2) * 0.8) + 90;
 		var ctx = canvas.getContext("2d");
 		let column = 0;
 		let row = 0;
+		let extra = 0;
 
 		// Font Size
-		ctx.font = "15px Georgia";
+		ctx.font = "12px Arial Black";
 
 		// Get Hands
 		hands.forEach(
@@ -104,31 +105,56 @@ class Game {
 					.sort((a, b) => b.order() - a.order())
 					.forEach(card => {
 
+						// Let Informative text
+						let text = card.status;
+
 						// Get Image
 						var image = document.getElementById('img_' + card.image);
 
 						// Card Image
-						ctx.drawImage(image, (245 * 0.80) * (column), ((342 * 0.80) * row) , ( 245 * 0.80 ) , ( 342 * 0.80 ));
+						ctx.drawImage(image, (245 * 0.80) * (column), ((342 * 0.80) * row) + extra, (245 * 0.80), (342 * 0.80));
 
 						// Info Text
-						if (card.type === 'pokemon')
-							ctx.fillText(card.vitality_now + ' PS', (245 * 0.80) * (column) , ((342 * 0.80) * row) );
+						if (card.type === 'pokemon') {
+							// Add Info Text
+							text += " / " + card.vitality_now + "PS / ";
+
+							// Value Energy
+							let energy = "";
+
+							// Check Fire
+							if (card.energy.filter((v) => v === 'fire').length > 0) energy += 'Fire x' + card.energy.filter((v) => v === 'fire').length + " / ";
+
+							// Check Electric
+							if (card.energy.filter((v) => v === 'electric').length > 0) energy += 'Elec x' + card.energy.filter((v) => v === 'electric').length + " / ";
+
+							// Check Fight
+							if (card.energy.filter((v) => v === 'fight').length > 0) energy += 'Fight x' + card.energy.filter((v) => v === 'fight').length + " / ";
+
+							// Draw Text
+							ctx.fillText(energy.substring(0,energy.length - 2), (245 * 0.80) * (column), ((342 * 0.80) * (row + 1)) + extra + 30);
+
+						}
 
 						// Draw Text
-						ctx.fillText(card.status, (245 * 0.80) * (column), ((342 * 0.80) * row));
+						ctx.fillText(text, (245 * 0.80) * (column), ((342 * 0.80) * (row + 1)) + extra + 13);
+
 
 						// Next Column
 						column++;
 
 					});
 
-				// Print Extra Deck Fields
-				// Draw Text
-				ctx.fillText(hand.name, 0, ((342 * 0.80) * row) );
+				// Separación
+				ctx.beginPath();
+				ctx.moveTo(0, 315);
+				ctx.lineTo(canvas.width, 315);
+				ctx.stroke();
 
 				// Next Row
 				row++;
 				column = 0;
+				extra = 50;
 
 			}
 
