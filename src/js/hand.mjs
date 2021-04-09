@@ -42,19 +42,19 @@ class Card {
 
     // Order by Type
      switch (this.type) {
-      case 'pokemon': orden += 1;
-      case 'energy': orden += 2;
-      case 'object': orden += 3; 
+      case 'pokemon': orden += 30; break;
+      case 'energy': orden += 20; break;
+      case 'object': orden += 10;  break;
     }
 
     // Order by Status
     switch (this.status) {
-      case 'fight': orden += 0.01; 
-      case 'dock': orden += 0.02; 
-      case 'hand': orden += 0.03;
-      case 'deck': orden += 0.04; 
-      case 'discard': orden += 0.05; 
-      case 'dead': orden += 0.06; 
+      case 'fight': orden += 6; break;
+      case 'dock': orden += 5; break;
+      case 'hand': orden += 4; break;
+      case 'deck': orden += 3; break;
+      case 'discard': orden += 2;  break;
+      case 'dead': orden += 1; break;
     }
 
     return orden;
