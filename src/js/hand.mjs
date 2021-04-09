@@ -34,7 +34,7 @@ class Card {
     if (cardPrototype.prevolution !== undefined) this.prevolution = cardPrototype.prevolution;
 
     // Energy (Only if Pokemon)
-    if(this.type === `pokemon`) this.energy = [];
+    if (this.type === `pokemon`) this.energy = [];
 
   }
 
@@ -226,7 +226,7 @@ class Hand {
               if (accion == input) {
                 // Set Pokemon New
                 cardEvolution.status = cardBase.status;
-
+                cardEvolution.energy = cardBase.energy;
                 // Set Pokemon Old
                 cardBase.status = 'discard';
 
