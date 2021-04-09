@@ -1,9 +1,10 @@
 ataques
 cuando mato pongo 1 prize del rival en mi hand
 cartas entrenador
+al evolucionar la vida se resta 
 retire que valga energía
 paralizar
-
+Como restricción, un Pokémon no puede evolucionar en el mismo turno en que se le saca al campo o a la banca, ni tampoco puede evolucionar dos veces en el mismo turno.
 
 acabar printing v1 (done)
 sistema energías (done)

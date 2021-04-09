@@ -34,7 +34,9 @@ class Card {
     if (cardPrototype.prevolution !== undefined) this.prevolution = cardPrototype.prevolution;
 
     // Energy (Only if Pokemon)
-    if (this.type === `pokemon`) this.energy = [];
+    if (this.type === `pokemon`) {
+      this.energy = [];
+    }
 
   }
 
