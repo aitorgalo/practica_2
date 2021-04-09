@@ -59,11 +59,13 @@ class Game {
 					this.hands[0].status = 'playing';
 					this.hands[0].robar = true;
 					this.hands[0].energy = true;
+					this.hands[0].retire = true;
 
 					// Restar Stats Hand 2
 					this.hands[1].status = 'playing';
 					this.hands[1].robar = true;
 					this.hands[1].energy = true;
+					this.hands[1].retire = true;
 				}
 
 

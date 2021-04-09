@@ -43,7 +43,7 @@ class Card {
     // Order by Type
     switch (this.type) {
       case 'pokemon': orden += 30; break;
-      case 'energy': orden += 20; break;
+      case 'energy': orden += 20; if (this.nature == 'fight') orden += 0.1; if (this.nature == 'electric') orden += 0.2; if (this.nature == 'fire') orden += 0.3; break;
       case 'object': orden += 10; break;
     }
 
@@ -57,6 +57,7 @@ class Card {
       case 'dead': orden += 1; break;
     }
 
+    // Return Order by
     return orden;
 
   }
@@ -75,6 +76,7 @@ class Hand {
     this.status = 'start';
     this.robar = true;
     this.energy = true;
+    this.retire = true;
 
     // Añado todas las Cards a mi array
     let id = 0;
@@ -167,8 +169,7 @@ class Hand {
     let accion = 0;
 
     // Robar Carta de Deck a Hand x 1 (hasta 7 de momento)
-    if (this.robar == true)
-    {
+    if (this.robar == true) {
       output.innerHTML += `<br>${++accion}) Coger carta`;
       if (accion == input) {
         if (this.cards.filter(card => card.status === 'deck').length > 0)
@@ -179,12 +180,14 @@ class Hand {
 
     // Retirar Pokemon x 1
     if (this.robar != true)
+    if(this.retire == true)
       if (this.cards.filter(card => card.status === 'fight').length == 1)
         if (this.cards.filter(card => card.status === 'dock').length < 5)
           this.cards.filter(card => card.status === 'fight').forEach(card => {
             output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
             if (accion == input) {
               card.status = 'dock';
+              this.retire = false;
             }
           });
 
@@ -210,28 +213,25 @@ class Hand {
 
     // Evolucionar Pokemon x N
     if (this.robar != true)
-      if (this.cards.filter(card => card.status === 'fight').length == 1)
-        this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
-          .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
-            // Sólo si tengo el Pokemon en Fight o Dock
-            this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
-              .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
+      this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
+        .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
+          // Sólo si tengo el Pokemon en Fight o Dock
+          this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
+            .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
 
-                output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
-                if (accion == input) {
-                  // Set Pokemon New
-                  cardEvolution.status = cardBase.status;
+              output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
+              if (accion == input) {
+                // Set Pokemon New
+                cardEvolution.status = cardBase.status;
 
-                  // Set Pokemon Old
-                  cardBase.status = 'discard';
+                // Set Pokemon Old
+                cardBase.status = 'discard';
 
+              }
 
+            })
 
-                }
-
-              })
-
-          });
+        });
 
     // Unir Carta energía x 1
     let combinacion = [];
@@ -273,13 +273,14 @@ class Hand {
     // Atacar
 
 
-    // Pasar Turno
-    if (this.robar != true) {
-      output.innerHTML += `<br>${++accion}) Pasar turno`;
-      if (accion == input) {
-        this.status = "next";
+    // Pasar Turno (sólo si hay algún activo luchando)
+    if (this.robar != true)
+      if (this.cards.filter(card => card.status === 'fight').length == 1) {
+        output.innerHTML += `<br>${++accion}) Pasar turno`;
+        if (accion == input) {
+          this.status = "next";
+        }
       }
-    }
 
 
   }
