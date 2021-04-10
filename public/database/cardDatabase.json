@@ -1,7 +1,9 @@
-// Cards in the game
-var cardDatabase = [
 
-  {
+{
+
+"cards":
+[
+{
     "type": "pokemon",
     "name": "Charmander",
     "nature": "fire",
@@ -455,8 +457,5 @@ var cardDatabase = [
     "nature": "fight",
     "cards_deck": 7
   }
-
-];
-
-// Obtengo listado de todas las cards
-export { cardDatabase };
+  ]
+  }

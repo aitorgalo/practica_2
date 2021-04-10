@@ -1,5 +1,8 @@
+// Import Card Database
+import cardDatabase from '/database/cardDatabase.json';
+
 // Importo módulo con las cartas
-import { Hand, cardDatabase } from './hand.mjs';
+import { Hand } from './hand.mjs';
 // Importo módulo con el entorno gráfico
 import { GUI } from './gui.mjs';
 class Game {
@@ -27,7 +30,7 @@ class Game {
 	initGame(input, output) {
 
 		// Create New Hand of Cards (For Player 1 and Player 2)
-		this.hands = [new Hand(cardDatabase, "Player 1"), new Hand(cardDatabase, "Player 2")];
+		this.hands = [new Hand(cardDatabase.cards, "Player 1"), new Hand(cardDatabase.cards, "Player 2")];
 
 		// Get First 7 Cards
 		this.hands[0].getFirstCards();

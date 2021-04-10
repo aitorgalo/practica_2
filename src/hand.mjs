@@ -1,6 +1,3 @@
-// Importo módulo con las cartas
-import { cardDatabase } from './cardDatabase.mjs';
-
 // Constructor Card
 class Card {
 
@@ -341,4 +338,4 @@ class Hand {
 }
 
 // Export Class
-export { Hand, cardDatabase };
+export { Hand };
