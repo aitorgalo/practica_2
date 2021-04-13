@@ -189,7 +189,7 @@ class Hand {
 
           // Sólo si tengo suficiente energía
 
-          
+
           output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
 
           // Si puedo Atacar
@@ -210,11 +210,6 @@ class Hand {
             });
 
             // Efectos
-
-
-            // Si muere Rival lo descarto
-            hand_rival.cards.filter(cardRival => cardRival.status === 'fight')
-              .filter(cardRival => cardRival.vitality_now <= 0).map(cardRival => cardRival.status = 'discard');
 
             // Paso turno
             this.status = "next";
@@ -327,6 +322,14 @@ class Hand {
         }
       }
 
+
+    // Si mueren mis Pokemon lo descarto y doy mis premios
+    this.cards.filter(card => card.status === 'fight')
+      .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
+
+    // Si muere Rival lo descarto y obtengo su premio
+    hand_rival.cards.filter(cardRival => cardRival.status === 'fight')
+      .filter(cardRival => cardRival.vitality_now <= 0).map(cardRival => cardRival.status = 'discard');
 
   }
 

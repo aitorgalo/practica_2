@@ -1,4 +1,4 @@
-Sólo poner ataque si tengo la energía que necesito.
+Sólo poner ataque si tengo la energía que necesito. (check energía)
 // Attack Effect
 get 1 electric
 discard 1 fire
@@ -30,6 +30,6 @@ heal 30
 heal effects
 
 al evolucionar la vida se resta 
-Como restricción, un Pokémon no puede evolucionar en el mismo turno en que se le saca al campo o a la banca, ni tampoco puede evolucionar dos veces en el mismo turno.
-retire que valga energía
+Sólo evolucionar el pokemon una vez por turno
+retire que valga energía (check energía)
 paralizar
