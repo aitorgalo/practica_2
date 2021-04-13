@@ -271,7 +271,8 @@ class Hand {
               if (accion == input) {
                 // Set Pokemon New
                 cardEvolution.status = cardBase.status;
-                cardEvolution.energy = cardBase.energy;
+                cardEvolution.energy = cardBase.energy - ( cardBase.vitality - cardBase.vitality_now );
+
                 // Set Pokemon Old
                 cardBase.status = 'discard';
 

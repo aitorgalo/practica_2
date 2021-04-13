@@ -20,7 +20,6 @@ class Game {
 			case "print": console.log(this.hands); break;
 			case "draw": this.draw(this.hands);
 			case "clear": console.clear(); break;
-			case "random" : console.log(Math.round(Math.random())); break; 
 			default: this.readGameState(input, output); this.readGameState("", output); this.draw(this.hands);
 
 		}

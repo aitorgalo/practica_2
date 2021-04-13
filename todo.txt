@@ -33,3 +33,4 @@ al evolucionar la vida se resta
 Sólo evolucionar el pokemon una vez por turno
 retire que valga energía (check energía)
 paralizar
+random ( Math.round(Math.random()) )

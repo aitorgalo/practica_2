@@ -192,6 +192,7 @@
       {
         "name": "Vigorizar",
         "cost": ["electric"],
+        "damage": 0,
         "effect": "get 1 electric"
       },
       {
@@ -217,6 +218,7 @@
       {
         "name": "Onda Trueno",
         "cost": ["electric"],
+        "damage": 0,
         "effect": "paralysis"
       },
       {
@@ -292,6 +294,7 @@
       {
         "name": "Atravesar Excavando",
         "cost": ["fight", "any"],
+        "damage": 0,
         "effect": "attack 30 dock"
       }
     ],
@@ -333,6 +336,7 @@
       {
         "name": "Golpe Bis",
         "cost": ["fight", "fight"],
+        "damage": 0,
         "effect": "random 20 x 2"
       }
     ],
@@ -399,6 +403,7 @@
       {
         "name": "Mordisco Sombrío",
         "cost": ["any"],
+        "damage": 0,
         "effect": "60 x special energy"
       }
     ],
