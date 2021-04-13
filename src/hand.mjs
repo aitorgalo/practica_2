@@ -271,7 +271,8 @@ class Hand {
               if (accion == input) {
                 // Set Pokemon New
                 cardEvolution.status = cardBase.status;
-                cardEvolution.energy = cardBase.energy - ( cardBase.vitality - cardBase.vitality_now );
+                cardEvolution.energy = cardBase.energy;
+                cardEvolution.vitality_now -= (cardBase.vitality - cardBase.vitality_now);
 
                 // Set Pokemon Old
                 cardBase.status = 'discard';
@@ -332,15 +333,26 @@ class Hand {
       }
 
 
-    // Si mueren mis Pokemon lo descarto y doy mis premios
-    this.cards.filter(card => card.status === 'fight')
-      .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
+    // Si mueren mis Pokemon (banquillo o lucha) lo descarto y doy mis premios
+    let conter_deaths = this.cards.filter(card =>  (card.status === 'fight' || card.status === 'dock' ) && card.type === 'pokemon' )
+      .filter(card => card.vitality_now <= 0).length;
+    if(counter_deaths > 0)
+    {
 
-    // Si muere Rival lo descarto y obtengo su premio
-    hand_rival.cards.filter(cardRival => cardRival.status === 'fight')
-      .filter(cardRival => cardRival.vitality_now <= 0).map(cardRival => cardRival.status = 'discard');
+      // Discard Death Pokemon
+      this.cards.filter( ( card.status === 'fight' || card.status === 'dock' ) && card.type === 'pokemon' )
+      .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
+    }
+
+  
 
   }
+
+// Funciones Generales
+
+
+
+
 
   // Para ordenar la array
   shuffle(array) {
