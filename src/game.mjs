@@ -20,6 +20,7 @@ class Game {
 			case "print": console.log(this.hands); break;
 			case "draw": this.draw(this.hands);
 			case "clear": console.clear(); break;
+			case "random" : console.log(Math.round(Math.random())); break; 
 			default: this.readGameState(input, output); this.readGameState("", output); this.draw(this.hands);
 
 		}
@@ -59,27 +60,18 @@ class Game {
 				// If Everybody Next Restart Turn
 				if (this.hands[0].status === 'next' && this.hands[1].status === 'next') {
 					// Restar Stats Hand 1
-					this.hands[0].status = 'playing';
-					this.hands[0].robar = true;
-					this.hands[0].energy = true;
-					this.hands[0].retire = true;
+					this.hands[0].restartTurno();
 
 					// Restar Stats Hand 2
-					this.hands[1].status = 'playing';
-					this.hands[1].robar = true;
-					this.hands[1].energy = true;
-					this.hands[1].retire = true;
+					this.hands[1].restartTurno();
 				}
-
 
 				// If Everybody Plays . Plays Player 1
 				if (this.hands[0].status === 'playing' && this.hands[1].status === 'playing')
-					this.hands[0].turno(input, output,this.hands[1]);
+					this.hands[0].turno(input, output, this.hands[1]);
 				else
 					if (this.hands[0].status === 'next' && this.hands[1].status === 'playing')
-						this.hands[1].turno(input, output,this.hands[0]);
-
-
+						this.hands[1].turno(input, output, this.hands[0]);
 
 			}
 
@@ -135,7 +127,7 @@ class Game {
 							if (card.energy.filter((v) => v === 'fight').length > 0) energy += 'Fight x' + card.energy.filter((v) => v === 'fight').length + " / ";
 
 							// Draw Text
-							ctx.fillText(energy.substring(0,energy.length - 2), (245 * 0.80) * (column), ((342 * 0.80) * (row + 1)) + extra + 30);
+							ctx.fillText(energy.substring(0, energy.length - 2), (245 * 0.80) * (column), ((342 * 0.80) * (row + 1)) + extra + 30);
 
 						}
 

@@ -163,6 +163,14 @@ class Hand {
 
   }
 
+  restartTurno() {
+    // Restar Stats Hand 1
+    this.status = 'playing';
+    this.robar = true;
+    this.energy = true;
+    this.retire = true;
+  }
+
   // Acciones Principales
   turno(input, output, hand_rival) {
 
