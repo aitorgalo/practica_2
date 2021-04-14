@@ -208,17 +208,6 @@ class Hand {
             // Quito la vida al rival
             hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
 
-            // Quito Energía
-            attack.cost.forEach(cost => {
-
-              // Remove Energy for the attack cost
-              if (cost === 'any')
-                delete card.energy[0];
-              else
-                delete card.energy[card.energy.indexOf(cost)];
-
-            });
-
             // Efectos
 
             // Paso turno
