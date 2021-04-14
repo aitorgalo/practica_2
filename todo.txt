@@ -1,27 +1,6 @@
 Sólo poner ataque si tengo la energía que necesito. (check energía)
 // Attack Effect
-get 1 electric
-discard 1 fire
-discard 3 fire
-discard 1 energy rival
-discard all energy 70
-discard all energy
-change pokemon
-skip 1 turn
-random autoattack 10
-
-random paralysis
-paralysis
-
-autoattack 50
-autoattack 80
-autoattack 90
-autoattack 20
-attack 30 dock
-attack 20 self dock
-random 20 x 2
-auto 10 less
-60 x special energy
+attacks
 
 // Objetos
 pociones

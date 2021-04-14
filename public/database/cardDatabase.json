@@ -188,14 +188,14 @@
     "type": "object",
     "name": "Poción",
     "effect": "heal 30",
-    "cards_deck": 6
+    "cards_deck": 4
   },
 
   {
     "name": "Energía Fuego",
     "type": "energy",
     "nature": "fire",
-    "cards_deck": 4
+    "cards_deck": 6
   },
 
   {
