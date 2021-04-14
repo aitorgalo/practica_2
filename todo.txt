@@ -24,10 +24,7 @@ auto 10 less
 60 x special energy
 
 // Objetos
-steal 7 end turn
-change active dock
-heal 30
-heal effects
+pociones
 
 Sólo evolucionar el pokemon una vez por turno
 retire que valga energía (check energía)

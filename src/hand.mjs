@@ -180,7 +180,7 @@ class Hand {
     output.innerHTML = `Escoge Acción ${this.name}:`;
     let accion = 0;
 
-    // Robar Carta de Deck a Hand x 1 (hasta 7 de momento)
+    // Robar Carta de Deck a Hand x 1
     if (this.robar == true) {
       output.innerHTML += `<br>${++accion}) Coger carta`;
       if (accion == input) {
@@ -248,6 +248,7 @@ class Hand {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a fight`;
           if (accion == input) {
             card.status = 'fight';
+            card.evolved = true;
           }
         });
 
@@ -258,6 +259,7 @@ class Hand {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a dock (banquillo)`;
           if (accion == input) {
             card.status = 'dock';
+            card.evolved = true;
           }
         });
 
@@ -275,6 +277,7 @@ class Hand {
                 cardEvolution.status = cardBase.status;
                 cardEvolution.energy = cardBase.energy;
                 cardEvolution.vitality_now -= (cardBase.vitality - cardBase.vitality_now);
+                cardEvolution.evolved = true;
 
                 // Set Pokemon Old
                 cardBase.status = 'discard';

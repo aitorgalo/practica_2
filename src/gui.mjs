@@ -30,7 +30,7 @@ class GUI {
         document.getElementsByTagName('body')[0].appendChild(form);
 
         // Load Website
-        for (let i = 0; i <= 25; i++) {
+        for (let i = 0; i <= 22; i++) {
             let img = document.createElement("img");
             img.id = "img_" + i;
             img.src = "img/" + i + ".png";
