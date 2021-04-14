@@ -345,6 +345,7 @@ class Hand {
           // Clone Card
           let clone = _.clone(hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1)[0]);
           clone.status = 'hand';
+          clone.id += '_rival';
 
           // Get Prize
           this.cards.push(clone);
