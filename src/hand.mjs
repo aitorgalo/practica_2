@@ -112,8 +112,8 @@ class Hand {
     // Get First 7 Cards
     this.cards.slice(0, 7).map(card => card.status = 'hand');
 
-    // Set 6 Cards Prize
-    this.cards.filter(card => card.status === 'deck').slice(0, 6).map(card => card.status = 'prize');
+    // Set 3 Cards Prize
+    this.cards.filter(card => card.status === 'deck').slice(0, 3).map(card => card.status = 'prize');
 
   }
 

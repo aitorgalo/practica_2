@@ -52,27 +52,6 @@
 
   {
     "type": "pokemon",
-    "name": "Charizard",
-    "nature": "fire",
-    "vitality": 150,
-    "hability": "all fire",
-    "attacks": [
-      {
-        "name": "Giro Fuego",
-        "cost": ["fire", "fire", "fire", "fire"],
-        "damage": 200,
-        "effect": "discard 3 fire"
-      }
-    ],
-    "weakness": "water",
-    "strong": "fight",
-    "retire": 3,
-    "prevolution": "Charmeleon",
-    "cards_deck": 1
-  },
-
-  {
-    "type": "pokemon",
     "name": "Growlithe",
     "nature": "fire",
     "vitality": 70,
@@ -92,26 +71,6 @@
     "weakness": "water",
     "retire": 2,
     "cards_deck": 2
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Arcanine",
-    "nature": "fire",
-    "vitality": 130,
-    "hability": "move fire energy",
-    "attacks": [
-      {
-        "name": "Aliento Ígneo",
-        "cost": ["fire", "fire", "fire", "any"],
-        "damage": 150,
-        "effect": "skip 1 turn"
-      }
-    ],
-    "weakness": "water",
-    "retire": 2,
-    "prevolution": "Growlithe",
-    "cards_deck": 1
   },
 
   {
@@ -185,83 +144,6 @@
 
   {
     "type": "pokemon",
-    "name": "Raichu",
-    "nature": "electric",
-    "vitality": 100,
-    "attacks": [
-      {
-        "name": "Vigorizar",
-        "cost": ["electric"],
-        "damage": 0,
-        "effect": "get 1 electric"
-      },
-      {
-        "name": "Rayo Chispa",
-        "cost": ["electric", "electric", "any"],
-        "damage": 70,
-        "effect": "discard all energy 70"
-      }
-    ],
-    "weakness": "fight",
-    "strong": "metal",
-    "retire": 1,
-    "prevolution": "Pikachu",
-    "cards_deck": 1
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Magnemite",
-    "nature": "electric",
-    "vitality": 50,
-    "attacks": [
-      {
-        "name": "Onda Trueno",
-        "cost": ["electric"],
-        "damage": 0,
-        "effect": "paralysis"
-      },
-      {
-        "name": "Autodestrucción",
-        "cost": ["electric", "any"],
-        "damage": 50,
-        "effect": "autoattack 50"
-      }
-    ],
-    "weakness": "fight",
-    "strong": "metal",
-    "retire": 1,
-    "cards_deck": 2
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Magneton",
-    "nature": "electric",
-    "vitality": 80,
-    "attacks": [
-      {
-        "name": "Onda Trueno",
-        "cost": ["electric", "any"],
-        "damage": 30,
-        "effect": "random paralysis"
-      },
-      {
-        "name": "Autodestrucción",
-        "cost": ["electric", "electric", "any"],
-        "damage": 80,
-        "effect": "autoattack 80"
-      }
-    ],
-    "weakness": "fight",
-    "strong": "metal",
-    "retire": 1,
-    "prevolution": "Magnemite",
-    "cards_deck": 1
-  },
-
-  {
-    "type": "pokemon",
     "name": "Zapdos",
     "nature": "electric",
     "vitality": 110,
@@ -286,49 +168,6 @@
 
   {
     "type": "pokemon",
-    "name": "Diglett",
-    "nature": "fight",
-    "vitality": 40,
-    "hability": "evade dock",
-    "attacks": [
-      {
-        "name": "Atravesar Excavando",
-        "cost": ["fight", "any"],
-        "damage": 0,
-        "effect": "attack 30 dock"
-      }
-    ],
-    "weak": "plant",
-    "retire": 1,
-    "cards_deck": 2
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Dugtrio",
-    "nature": "fight",
-    "vitality": 90,
-    "attacks": [
-      {
-        "name": "Cuchillada",
-        "cost": ["any", "any"],
-        "damage": 40
-      },
-      {
-        "name": "Terremoto",
-        "cost": ["fight", "fight", "fight"],
-        "damage": 130,
-        "effect": "attack 20 self dock"
-      }
-    ],
-    "weak": "plant",
-    "retire": 1,
-    "prevolution": "Diglett",
-    "cards_deck": 1
-  },
-
-  {
-    "type": "pokemon",
     "name": "Machop",
     "nature": "fight",
     "vitality": 70,
@@ -346,99 +185,31 @@
   },
 
   {
-    "type": "pokemon",
-    "name": "Machoke",
-    "nature": "fight",
-    "vitality": 90,
-    "attacks": [
-      {
-        "name": "Golpe Kárate",
-        "cost": ["fight", "fight"],
-        "damage": 60,
-        "effect": "auto 10 less"
-      },
-      {
-        "name": "Sumisión",
-        "cost": ["fight", "fight", "fight"],
-        "damage": 80,
-        "effect": "autoattack 20"
-      }
-    ],
-    "weak": "psychic",
-    "retire": 2,
-    "prevolution": "Machop",
-    "cards_deck": 1
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Rattata",
-    "nature": "normal",
-    "vitality": 40,
-    "hability": "delete rival tool",
-    "attacks": [
-      {
-        "name": "Mordisco",
-        "cost": ["any"],
-        "damage": 10
-      }
-    ],
-    "weak": "fight",
-    "retire": 1,
-    "cards_deck": 2
-  },
-
-  {
-    "type": "pokemon",
-    "name": "Raticate",
-    "nature": "normal",
-    "vitality": 60,
-    "attacks": [
-      {
-        "name": "Triturar",
-        "cost": ["any"],
-        "damage": 10,
-        "effect": "discard 1 energy rival"
-      },
-      {
-        "name": "Mordisco Sombrío",
-        "cost": ["any"],
-        "damage": 0,
-        "effect": "60 x special energy"
-      }
-    ],
-    "weak": "fight",
-    "retire": 1,
-    "prevolution": "Rattata",
-    "cards_deck": 1
-  },
-
-  {
     "type": "object",
     "name": "Poción",
     "effect": "heal 30",
-    "cards_deck": 8
+    "cards_deck": 6
   },
 
   {
     "name": "Energía Fuego",
     "type": "energy",
     "nature": "fire",
-    "cards_deck": 11
+    "cards_deck": 4
   },
 
   {
     "name": "Energía Electricidad",
     "type": "energy",
     "nature": "electric",
-    "cards_deck": 9
+    "cards_deck": 4
   },
 
   {
     "name": "Energía Lucha",
     "type": "energy",
     "nature": "fight",
-    "cards_deck": 7
+    "cards_deck": 4
   }
   ]
   }
