@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 // Constructor Card
 class Card {
 
@@ -334,30 +336,39 @@ class Hand {
 
 
     // Si mueren mis Pokemon (banquillo o lucha) lo descarto y doy mis premios
-    let conter_deaths = this.cards.filter(card =>  (card.status === 'fight' || card.status === 'dock' ) && card.type === 'pokemon' )
-      .filter(card => card.vitality_now <= 0).length;
-    if(counter_deaths > 0)
-    {
+    hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
+      .filter(card => card.vitality_now <= 0).forEach(card => {
 
-      // Discard Death Pokemon
-      this.cards.filter( ( card.status === 'fight' || card.status === 'dock' ) && card.type === 'pokemon' )
+        // If Available Prize
+        if (hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).length > 0) {
+
+          // Clone Card
+          let clone = _.clone(hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1)[0]);
+          clone.status = 'hand';
+
+          // Get Prize
+          this.cards.push(clone);
+
+          // Delete From Rival
+          hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).map(card => card.status = 'discard');
+
+        }
+
+      });
+
+    // Discard Death Pokemon
+    hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
-    }
-
-  
-
   }
 
-// Funciones Generales
 
 
+}
 
-
-
-  // Para ordenar la array
-  shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
+// Para ordenar la array
+shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+}
 
 }
 
