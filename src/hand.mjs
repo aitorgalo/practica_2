@@ -359,11 +359,9 @@ class Hand {
     // Discard Death Pokemon
     hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
+
   }
 
-
-
-}
 
 // Para ordenar la array
 shuffle(array) {
