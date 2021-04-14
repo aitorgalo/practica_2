@@ -322,9 +322,6 @@ class Hand {
 
 
 
-
-    // Utilizar Habilidades x N
-
     // Pasar Turno (sólo si hay algún activo luchando)
     if (this.robar != true)
       if (this.cards.filter(card => card.status === 'fight').length == 1) {
