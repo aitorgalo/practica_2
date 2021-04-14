@@ -1,9 +1,10 @@
 Sólo poner ataque si tengo la energía que necesito. (check energía)
 // Attack Effect
 attacks
-
-Sólo evolucionar el pokemon una vez por turno
-retire que valga energía (check energía)
+Sólo ataco si tengo suficiente energía.
+Sólo retiro si tengo suficiente energía.
+Sólo evolucionar el pokemon una vez por turno.
+retire que valga energía (check energía).
 random ( Math.round(Math.random()) )
 
 

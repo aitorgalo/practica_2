@@ -198,7 +198,21 @@ class Hand {
         card.attacks.forEach(attack => {
 
           // Sólo si tengo suficiente energía
+         var countsAttack = { fight:0 , electric:0 , fire:0}
+         attack.cost.forEach(function(x) { countsAttack[x] = (countsAttack[x] || 0)+1; });
+         console.log('attack' , countsAttack);
 
+         // Energy Pokemon
+         var countsPokemon = { fight:0 , electric:0 , fire: 0}
+         card.energy.forEach(function(x) { countsPokemon[x] = (countsPokemon[x] || 0)+1; });
+         console.log(' pokemon ' , countsPokemon);
+
+         // Resume
+         var countsResume = _.clone(countsPokemon);
+         countsResume.fight -= countsAttack.fight;
+         countsResume.electric -= countsAttack.electric;
+         countsResume.fire -= countsAttack.fire;
+         console.log(' resume ' , countsResume);
 
           output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
 
@@ -217,19 +231,6 @@ class Hand {
         });
       });
 
-    // Retirar Pokemon x 1
-    if (this.robar != true)
-      if (this.retire == true)
-        if (this.cards.filter(card => card.status === 'fight').length == 1)
-          if (this.cards.filter(card => card.status === 'dock').length < 5)
-            this.cards.filter(card => card.status === 'fight').forEach(card => {
-              output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
-              if (accion == input) {
-                card.status = 'dock';
-                this.retire = false;
-              }
-            });
-
     // Colocar Pokemon dock a fight
     if (this.robar != true)
       if (this.cards.filter(card => card.status === 'fight').length == 0)
@@ -237,7 +238,6 @@ class Hand {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a fight`;
           if (accion == input) {
             card.status = 'fight';
-            card.evolved = true;
           }
         });
 
@@ -248,7 +248,6 @@ class Hand {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a dock (banquillo)`;
           if (accion == input) {
             card.status = 'dock';
-            card.evolved = true;
           }
         });
 
@@ -266,7 +265,6 @@ class Hand {
                 cardEvolution.status = cardBase.status;
                 cardEvolution.energy = cardBase.energy;
                 cardEvolution.vitality_now -= (cardBase.vitality - cardBase.vitality_now);
-                cardEvolution.evolved = true;
 
                 // Set Pokemon Old
                 cardBase.status = 'discard';
@@ -316,7 +314,7 @@ class Hand {
       this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
 
         // Obtener Pokemons de Dock y Fight
-        this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon' && cardPokemon.vitality_now < cardPokemon.vitality ) 
+        this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon' && cardPokemon.vitality_now < cardPokemon.vitality)
           .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
 
             // To not Repeat Combination
@@ -326,10 +324,10 @@ class Hand {
                 // Discard Object Card
                 card.status = 'discard';
 
-                // TODO Add HP to Card
+                // Add HP to Card
                 cardPokemon.vitality_now += card.effect;
-                if(cardPokemon.vitality_now > cardPokemon.vitality) cardPokemon.vitality_now = cardPokemon.vitality;
-                
+                if (cardPokemon.vitality_now > cardPokemon.vitality) cardPokemon.vitality_now = cardPokemon.vitality;
+
               }
 
               // Put Combination in Array
@@ -341,6 +339,30 @@ class Hand {
 
       });
 
+    // Retirar Pokemon x 1
+    if (this.robar != true)
+      if (this.retire == true)
+        if (this.cards.filter(card => card.status === 'fight').length == 1)
+          if (this.cards.filter(card => card.status === 'dock').length < 6)
+            this.cards.filter(card => card.status === 'fight').forEach(card => {
+
+              // Si tengo suficiente energía como para retirarlo
+              if (card.energy.length >= card.retire) {
+                output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
+                if (accion == input) {
+
+                  // Retiro al dock
+                  card.status = 'dock';
+                  this.retire = false;
+
+                  // Quito Energía necesaria
+
+                  
+                }
+
+              }
+
+            });
 
     // Pasar Turno (sólo si hay algún activo luchando)
     if (this.robar != true)
