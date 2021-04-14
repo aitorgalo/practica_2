@@ -29,7 +29,6 @@ change active dock
 heal 30
 heal effects
 
-cuando mato pongo 1 prize del rival en mi hand (falta quitar carta al rival)
 Sólo evolucionar el pokemon una vez por turno
 retire que valga energía (check energía)
 random ( Math.round(Math.random()) )
