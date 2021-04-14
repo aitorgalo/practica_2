@@ -311,7 +311,35 @@ class Hand {
         });
 
     // Jugar Carta Entrenador x N
+    combinacion = [];
+    if (this.robar != true)
+      this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
 
+        // Obtener Pokemons de Dock y Fight
+        this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon' && cardPokemon.vitality_now < cardPokemon.vitality ) 
+          .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
+
+            // To not Repeat Combination
+            if (!combinacion.includes(card.name + "_" + cardPokemon.id)) {
+              output.innerHTML += `<br>${++accion}) Usar Objeto ` + card.name + ` en ` + cardPokemon.name;
+              if (accion == input) {
+                // Discard Object Card
+                card.status = 'discard';
+
+                // TODO Add HP to Card
+                cardPokemon.vitality_now += card.effect;
+                if(cardPokemon.vitality_now > cardPokemon.vitality) cardPokemon.vitality_now = cardPokemon.vitality;
+                
+              }
+
+              // Put Combination in Array
+              combinacion.push(card.name + "_" + cardPokemon.id);
+
+            }
+
+          })
+
+      });
 
 
     // Pasar Turno (sólo si hay algún activo luchando)
@@ -353,10 +381,10 @@ class Hand {
   }
 
 
-// Para ordenar la array
-shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
+  // Para ordenar la array
+  shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
 
 }
 

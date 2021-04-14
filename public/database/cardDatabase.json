@@ -187,7 +187,7 @@
   {
     "type": "object",
     "name": "Poción",
-    "effect": "heal 30",
+    "effect": 30,
     "cards_deck": 2
   },
 
