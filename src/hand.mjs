@@ -126,7 +126,7 @@ class Hand {
       // Get Options
       let accion = 0;
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-        output.innerHTML += `<br>${++accion}) ` + card.name;
+        output.innerHTML += `<br>${++accion}) ${card.name}`;
         if (accion == input) {
           card.status = 'fight';
         }
@@ -149,7 +149,7 @@ class Hand {
 
       // Get Options
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-        output.innerHTML += `<br>${++accion}) ` + card.name;
+        output.innerHTML += `<br>${++accion}) ${card.name}`;
         if (accion == input) {
           card.status = 'dock';
         }
@@ -215,7 +215,7 @@ class Hand {
             ((countsPokemon.fight + countsPokemon.electric + countsPokemon.fire) >=
               (countsAttack.fight + countsAttack.electric + countsAttack.fire + countsAttack.any))) {
 
-            output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
+            output.innerHTML += `<br>${++accion}) Ataque ${attack.name}`;
 
             // Si puedo Atacar
             if (accion == input) {
@@ -250,7 +250,7 @@ class Hand {
     if (this.robar != true)
       if (this.cards.filter(card => card.status === 'fight').length == 0)
         this.cards.filter(card => card.status === 'dock' && card.type === 'pokemon').forEach(card => {
-          output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a fight`;
+          output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} DOCK a FIGHT`;
           if (accion == input) {
             card.status = 'fight';
           }
@@ -261,7 +261,7 @@ class Hand {
     if (this.attacked != true)
       if (this.cards.filter(card => card.status === 'dock').length < 5)
         this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-          output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a dock (banquillo)`;
+          output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} HAND a DOCK`;
           if (accion == input) {
             card.status = 'dock';
           }
@@ -276,7 +276,7 @@ class Hand {
           this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
             .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
 
-              output.innerHTML += `<br>${++accion}) Evolucionar PKMN ` + cardBase.name + ` a ` + cardEvolution.name;
+              output.innerHTML += `<br>${++accion}) Evolucionar PKMN ${cardBase.name} (${cardBase.status.toUpperCase()}) a ${cardEvolution.name}`;
               if (accion == input) {
                 // Set Pokemon New
                 cardEvolution.status = cardBase.status;
@@ -305,7 +305,7 @@ class Hand {
 
               // To not Repeat Combination
               if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
-                output.innerHTML += `<br>${++accion}) Unir energía ` + card.name + ` a ` + cardPokemon.name;
+                output.innerHTML += `<br>${++accion}) Unir energía ${card.name} a ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})` ;
                 if (accion == input) {
                   // Discard Energy Card
                   card.status = 'discard';
@@ -338,7 +338,7 @@ class Hand {
 
             // To not Repeat Combination
             if (!combinacion.includes(card.name + "_" + cardPokemon.id)) {
-              output.innerHTML += `<br>${++accion}) Usar Objeto ` + card.name + ` en ` + cardPokemon.name;
+              output.innerHTML += `<br>${++accion}) Usar Objeto ${card.name} en ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
               if (accion == input) {
                 // Discard Object Card
                 card.status = 'discard';
@@ -368,7 +368,7 @@ class Hand {
 
               // Si tengo suficiente energía como para retirarlo
               if (card.energy.length >= card.retire) {
-                output.innerHTML += `<br>${++accion}) Retirar PKMN ` + card.name + ` de fight a dock (banquillo)`;
+                output.innerHTML += `<br>${++accion}) Retirar PKMN ${card.name} FIGHT a DOCK`;
                 if (accion == input) {
 
                   // Retiro al dock
