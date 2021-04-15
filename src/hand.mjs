@@ -424,9 +424,6 @@ class Hand {
     hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
 
-  // Check End Game ( 0 Prizes or 0 Pokemon on Dock and Fight)
-  
-
   }
 
 
