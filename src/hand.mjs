@@ -82,6 +82,7 @@ class Hand {
     this.energy = true;
     this.retire = true;
     this.attacked = false;
+    this.turno_partida = 1;
 
     // Añado todas las Cards a mi array
     let id = 0;
@@ -173,6 +174,7 @@ class Hand {
     this.energy = true;
     this.retire = true;
     this.attacked = false;
+    this.turno_partida++; 
   }
 
   // Acciones Principales
@@ -296,6 +298,7 @@ class Hand {
     // Evolucionar Pokemon x N
     if(this.dead != true)
     if (this.robar != true)
+    if(this.turno_partida != 1)
     if (this.attacked != true)
       this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
         .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
