@@ -429,34 +429,44 @@ class Hand {
         }
       }
 
+      // Eliminar Pokemon
+      this.eliminar(this,hand_rival);
+      this.eliminar(hand_rival,this);
+
+
+  }
+
+ // Para eliminar Pokemon
+ eliminar(hand_1 , hand_2)
+ {
 
     // Si mueren mis Pokemon (banquillo o lucha) lo descarto y doy mis premios
-    hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
+    hand_2.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).forEach(card => {
 
         // If Available Prize
-        if (hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).length > 0) {
+        if (hand_2.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).length > 0) {
 
           // Clone Card
-          let clone = _.clone(hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1)[0]);
+          let clone = _.clone(hand_2.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1)[0]);
           clone.status = 'hand';
           clone.id += 100;
 
           // Get Prize
-          this.cards.push(clone);
+          hand_1.cards.push(clone);
 
           // Delete From Rival
-          hand_rival.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).map(card => card.status = 'discard');
+          hand_2.cards.filter(cardRival => cardRival.status === 'prize').slice(0, 1).map(card => card.status = 'discard');
 
         }
 
       });
 
     // Discard Death Pokemon
-    hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
+    hand_2.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
 
-  }
+ }
 
 
   // Para ordenar la array
