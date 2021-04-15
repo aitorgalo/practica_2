@@ -1,6 +1,3 @@
-Sólo poner ataque si tengo la energía que necesito. (check energía)
-// Attack Effect
-attacks
+ataques
 Sólo evolucionar el pokemon una vez por turno.
-endgame
 random ( Math.round(Math.random()) )
