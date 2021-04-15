@@ -182,7 +182,17 @@ class Hand {
     output.innerHTML = `Escoge Acción ${this.name}:`;
     let accion = 0;
 
+      // If 0 prizes or 0 Pokemon in dock or fight, dead
+      if ( (this.cards.filter(card => card.type === 'pokemon' && (card.status === 'fight' || card.status === 'dock') ).length == 0)
+      ||
+     (this.cards.filter(card => card.status === 'prize').length == 0) )
+      {
+        output.innerHTML += `<br>¡ Has perdido !¡ Pide la revancha con el comando start !`;
+        this.dead = true;
+      }
+
     // Robar Carta de Deck a Hand x 1
+    if(this.dead != true)
     if (this.robar == true)
     {
       output.innerHTML += `<br>${++accion}) Coger carta`;
@@ -194,6 +204,7 @@ class Hand {
     }
 
     // Atacar
+    if(this.dead != true)
     if (this.robar != true)
     if (this.attacked != true)
       this.cards.filter(card => card.status === 'fight').forEach(card => {
@@ -248,6 +259,7 @@ class Hand {
       });
 
     // Colocar Pokemon dock a fight
+    if(this.dead != true)
     if (this.robar != true)
       if (this.cards.filter(card => card.status === 'fight').length == 0)
         this.cards.filter(card => card.status === 'dock' && card.type === 'pokemon').forEach(card => {
@@ -258,6 +270,7 @@ class Hand {
         });
 
     // Colocar Pokemon hand a dock (Màx 5) x N
+    if(this.dead != true)
     if (this.robar != true)
     if (this.attacked != true)
     if (this.cards.filter(card => card.status === 'fight').length == 1)
@@ -270,6 +283,7 @@ class Hand {
         });
 
     // Evolucionar Pokemon x N
+    if(this.dead != true)
     if (this.robar != true)
     if (this.attacked != true)
       this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
@@ -296,6 +310,7 @@ class Hand {
 
     // Unir Carta energía x 1
     let combinacion = [];
+    if(this.dead != true)
     if (this.robar != true)
     if (this.attacked != true)
       if (this.energy == true)
@@ -331,6 +346,7 @@ class Hand {
 
     // Jugar Carta Entrenador x N
     combinacion = [];
+    if(this.dead != true)
     if (this.robar != true)
     if (this.attacked != true)
     if (this.cards.filter(card => card.status === 'fight').length == 1)
@@ -364,6 +380,7 @@ class Hand {
 
     // Retirar Pokemon x 1
     if (this.robar != true)
+    if(this.dead != true)
       if (this.retire == true)
       if (this.attacked != true)
         if (this.cards.filter(card => card.status === 'fight').length == 1)
@@ -389,6 +406,7 @@ class Hand {
             });
 
     // Pasar Turno (sólo si hay algún activo luchando)
+    if(this.dead != true)
     if (this.robar != true)
       if (this.cards.filter(card => card.status === 'fight').length == 1) {
         output.innerHTML += `<br>${++accion}) Pasar turno`;
