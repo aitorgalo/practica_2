@@ -175,6 +175,10 @@ class Hand {
     this.retire = true;
     this.attacked = false;
     this.turno_partida++; 
+
+    // All Pokemon can evolve in next turn
+    this.cards.filter(card => card.type === 'pokemon' && ( card.status === 'fight' || card.status === 'dock' ) ).map(card => card.canEvolve = true);
+
   }
 
   // Acciones Principales
@@ -303,7 +307,7 @@ class Hand {
       this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
         .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
           // Sólo si tengo el Pokemon en Fight o Dock
-          this.cards.filter(cardBase => (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
+          this.cards.filter(cardBase => cardBase.canEvolve == true &&  (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
             .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
 
               output.innerHTML += `<br>${++accion}) Evolucionar PKMN ${cardBase.name} (${cardBase.status.toUpperCase()}) a ${cardEvolution.name}`;
