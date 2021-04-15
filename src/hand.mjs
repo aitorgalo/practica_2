@@ -183,7 +183,8 @@ class Hand {
     let accion = 0;
 
     // Robar Carta de Deck a Hand x 1
-    if (this.robar == true) {
+    if (this.robar == true)
+    {
       output.innerHTML += `<br>${++accion}) Coger carta`;
       if (accion == input) {
         if (this.cards.filter(card => card.status === 'deck').length > 0)
@@ -298,6 +299,7 @@ class Hand {
     if (this.robar != true)
     if (this.attacked != true)
       if (this.energy == true)
+      if (this.cards.filter(card => card.status === 'fight').length == 1)
         this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
 
           // Obtener Pokemons de Dock y Fight
@@ -331,6 +333,7 @@ class Hand {
     combinacion = [];
     if (this.robar != true)
     if (this.attacked != true)
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
       this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
 
         // Obtener Pokemons de Dock y Fight
@@ -420,6 +423,9 @@ class Hand {
     // Discard Death Pokemon
     hand_rival.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
+
+  // Check End Game ( 0 Prizes or 0 Pokemon on Dock and Fight)
+  
 
   }
 
