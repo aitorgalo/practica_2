@@ -81,7 +81,7 @@ class Game {
 
 		// Get Canvas
 		var canvas = document.getElementById("canvas");
-		canvas.width = (245 * 20) * 0.8;
+		canvas.width = (245 * 30) * 0.8;
 		canvas.height = ((342 * 2) * 0.8) + 90;
 		var ctx = canvas.getContext("2d");
 		let column = 0;

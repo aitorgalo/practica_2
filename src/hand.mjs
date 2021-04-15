@@ -259,6 +259,7 @@ class Hand {
     // Colocar Pokemon hand a dock (Màx 5) x N
     if (this.robar != true)
     if (this.attacked != true)
+    if (this.cards.filter(card => card.status === 'fight').length == 1)
       if (this.cards.filter(card => card.status === 'dock').length < 5)
         this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} HAND a DOCK`;
