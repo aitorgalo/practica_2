@@ -1,3 +1,1 @@
-ataques
 Sólo evolucionar el pokemon una vez por turno.
-random ( Math.round(Math.random()) )

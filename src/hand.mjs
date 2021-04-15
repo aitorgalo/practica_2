@@ -187,7 +187,7 @@ class Hand {
       ||
      (this.cards.filter(card => card.status === 'prize').length == 0) )
       {
-        output.innerHTML += `<br>¡ Has perdido !¡ Pide la revancha con el comando start !`;
+        output.innerHTML += `<br>¡ Has perdido (3 PKMN eliminados o ninguno en FIGHT o DOCK) !¡ Pide la revancha con el comando start !`;
         this.dead = true;
       }
 
@@ -195,13 +195,24 @@ class Hand {
     if(this.dead != true)
     if (this.robar == true)
     {
+      // Si tengo cartas robo
+      if (this.cards.filter(card => card.status === 'deck').length > 0)
+      {
+
       output.innerHTML += `<br>${++accion}) Coger carta`;
       if (accion == input) {
-        if (this.cards.filter(card => card.status === 'deck').length > 0)
+
           this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
         this.robar = false;
       }
+      }
+       // Sino hago como que he robado
+      else
+       {
+              this.robar = false;
+       }
     }
+    
 
     // Atacar
     if(this.dead != true)
@@ -237,12 +248,12 @@ class Hand {
 
               // Efectos
               switch (attack.effect) {
-                case "discard 1 fire": break;
+                case "discard 1 fire": card.energy.splice(card.energy.indexOf('fire'), 1); break;
                 case "change pokemon": card.status = 'dock' ; break;
-                case "random autoattack 10": break;
+                case "random autoattack 10": card.vitality_now -= Math.round(Math.random()) * 10 ; break;
                 case "autoattack 30": card.vitality_now -= 30 ; break;
                 case "discard all energy": card.energy = []; break;
-                case "random 20 x 2": break;
+                case "random 20 x 2": cardRival.vitality_now -= Math.round(Math.random()) * 20 ; cardRival.vitality_now -= Math.round(Math.random()) * 20 ;  break;
               }
 
               // Paso turno
