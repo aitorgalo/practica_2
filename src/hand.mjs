@@ -81,6 +81,7 @@ class Hand {
     this.robar = true;
     this.energy = true;
     this.retire = true;
+    this.attacked = false;
 
     // Añado todas las Cards a mi array
     let id = 0;
@@ -171,6 +172,7 @@ class Hand {
     this.robar = true;
     this.energy = true;
     this.retire = true;
+    this.attacked = false;
   }
 
   // Acciones Principales
@@ -192,6 +194,7 @@ class Hand {
 
     // Atacar
     if (this.robar != true)
+    if (this.attacked != true)
       this.cards.filter(card => card.status === 'fight').forEach(card => {
 
         // Pongo Cada Ataque disponible
@@ -223,15 +226,18 @@ class Hand {
               // Efectos
               switch (attack.effect) {
                 case "discard 1 fire": break;
-                case "change pokemon": break;
+                case "change pokemon": card.status = 'dock' ; break;
                 case "random autoattack 10": break;
-                case "autoattack 90": break;
-                case "discard all energy": break;
+                case "autoattack 30": card.vitality_now -= 30 ; break;
+                case "discard all energy": card.energy = []; break;
                 case "random 20 x 2": break;
               }
 
               // Paso turno
+              if(! attack.effect === `change pokemon`)
               this.status = "next";
+              else
+              this.attacked = true;
 
             }
 
@@ -252,6 +258,7 @@ class Hand {
 
     // Colocar Pokemon hand a dock (Màx 5) x N
     if (this.robar != true)
+    if (this.attacked != true)
       if (this.cards.filter(card => card.status === 'dock').length < 5)
         this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
           output.innerHTML += `<br>${++accion}) Colocar PKMN ` + card.name + ` a dock (banquillo)`;
@@ -262,6 +269,7 @@ class Hand {
 
     // Evolucionar Pokemon x N
     if (this.robar != true)
+    if (this.attacked != true)
       this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
         .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
           // Sólo si tengo el Pokemon en Fight o Dock
@@ -287,6 +295,7 @@ class Hand {
     // Unir Carta energía x 1
     let combinacion = [];
     if (this.robar != true)
+    if (this.attacked != true)
       if (this.energy == true)
         this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
 
@@ -320,6 +329,7 @@ class Hand {
     // Jugar Carta Entrenador x N
     combinacion = [];
     if (this.robar != true)
+    if (this.attacked != true)
       this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
 
         // Obtener Pokemons de Dock y Fight
@@ -351,6 +361,7 @@ class Hand {
     // Retirar Pokemon x 1
     if (this.robar != true)
       if (this.retire == true)
+      if (this.attacked != true)
         if (this.cards.filter(card => card.status === 'fight').length == 1)
           if (this.cards.filter(card => card.status === 'dock').length < 6)
             this.cards.filter(card => card.status === 'fight').forEach(card => {
