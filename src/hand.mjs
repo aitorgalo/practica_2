@@ -252,6 +252,12 @@ class Hand {
               // Quito la vida al rival
               hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
 
+              // Quito la vida al rival según weakness
+
+              
+              // Quito vida al rival dependiendo de strongness
+
+
               // Efectos
               switch (attack.effect) {
                 case "discard 1 fire": card.energy.splice(card.energy.indexOf('fire'), 1); break;

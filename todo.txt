@@ -1,5 +1,1 @@
-Notas sobre la Evolución: Ningún jugador puede hacer evolucionar a un Pokémon en el primer turno en
-que ese Pokémon entra en juego. Al hacer evolucionar a un Pokémon, ese Pokémon será nuevo en el juego, por
-lo que no podrá volver a evolucionar una segunda vez en el mismo turno. Puedes hacer evolucionar a cualquier
-Pokémon que tengas en juego, ya sea el Pokémon Activo o los Pokémon en Banca. Por último, ningún jugador puede
-hacer evolucionar a un Pokémon en el primer turno de dicho jugador, a no ser que una carta lo especifique.
+weakness y strongness

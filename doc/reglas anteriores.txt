@@ -1,0 +1,35 @@
+Reglas básicas
+--------------
+
+- Energia: Necesitas energía para hacer cosas con los Pokemon.
+Hasta para retirarse.
+- Ataque: Necesitas energía también. Hay energía "comodín".
+- Retirar Pokemon: Necesita energía, y lo cambias por un Pokemon de tu banquillo.
+- Evolucionar: Puedes evolucionarlos 1 vez por turno en el banquillo.
+- Poderes: Hay Pokemon con poderes especiales.
+- Turno: Acaba cuando atacas o si no puedes hacer nada (o te paraliza el ataque).
+- Perder: Si pierdes los premios. Son cartas que ganas cuando matas. Si te quedas sin cartas en el mazo.
+O si no tienes Pokemon en el área.
+
+Partida
+-------
+- Robar 7 cartas.
+- Elegir 1 Pokemon de nivel 1 para luchar.
+- Elegir 5 Pokemon en la banca.
+- Se colocan 2 premios.
+- Se escoge quien empieza de forma random. Con moneda.
+- Robar carta.
+- Asignar energía. Hasta a Pokemon del banquillo.
+- Atacar. Si tienes energía. No se pierde la energía al atacar.
+- En el ataque pone cuanto quita normal. Depende del tipo quitas más o menos. Y pierde vida el Pokemon.
+- Turno rival. Si tiene carta Energía asigna, y también puedes poner Pokemon en banquillo que tengas en la mano. Máx 7 cartas.
+- Asignar Energía + Evolucionar (lo pone en la carta). Al evolucionar no te curas. Ni pierdes energías.
+- Si ya tiene energía tu Pokemon, pon energía a Pokemon del banquillo.
+- Si ganas escoges premio.
+- Sólo 1 carta energía por turno.
+- Cartas de curación también hay.
+- Los ataques especiales se tira una moneda para ver si paralizamos al rival o no.
+
+
+Cuando se retira pierden energía? Sí.
+Parálisis cuanto dura? Se tira moneda cada turno?
