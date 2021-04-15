@@ -198,36 +198,39 @@ class Hand {
         card.attacks.forEach(attack => {
 
           // Sólo si tengo suficiente energía
-         var countsAttack = { fight:0 , electric:0 , fire:0}
-         attack.cost.forEach(function(x) { countsAttack[x] = (countsAttack[x] || 0)+1; });
-         console.log('attack' , countsAttack);
+          var countsAttack = { fight: 0, electric: 0, fire: 0, any: 0 }
+          attack.cost.forEach(function (x) { countsAttack[x] = (countsAttack[x] || 0) + 1; });
+          console.log('attack', countsAttack);
 
-         // Energy Pokemon
-         var countsPokemon = { fight:0 , electric:0 , fire: 0}
-         card.energy.forEach(function(x) { countsPokemon[x] = (countsPokemon[x] || 0)+1; });
-         console.log(' pokemon ' , countsPokemon);
+          // Energy Pokemon
+          var countsPokemon = { fight: 0, electric: 0, fire: 0 }
+          card.energy.forEach(function (x) { countsPokemon[x] = (countsPokemon[x] || 0) + 1; });
+          console.log(' pokemon ', countsPokemon);
 
-         // Resume
-         var countsResume = _.clone(countsPokemon);
-         countsResume.fight -= countsAttack.fight;
-         countsResume.electric -= countsAttack.electric;
-         countsResume.fire -= countsAttack.fire;
-         console.log(' resume ' , countsResume);
+          // Resume
+          if ((countsPokemon.fight >= countsAttack.fight) && (countsPokemon.electric >= countsAttack.electric)
+            && (countsPokemon.fire >= countsAttack.fire) &&
 
-          output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
+            ((countsPokemon.fight + countsPokemon.electric + countsPokemon.fire) >=
+              (countsAttack.fight + countsAttack.electric + countsAttack.fire + countsAttack.any))) {
 
-          // Si puedo Atacar
-          if (accion == input) {
+            output.innerHTML += `<br>${++accion}) Ataque ` + attack.name;
 
-            // Quito la vida al rival
-            hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
+            // Si puedo Atacar
+            if (accion == input) {
 
-            // Efectos
+              // Quito la vida al rival
+              hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
 
-            // Paso turno
-            this.status = "next";
+              // Efectos
+
+              // Paso turno
+              this.status = "next";
+
+            }
 
           }
+
         });
       });
 
@@ -357,7 +360,7 @@ class Hand {
 
                   // Quito Energía necesaria
 
-                  
+
                 }
 
               }
