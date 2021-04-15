@@ -152,7 +152,7 @@
         "name": "Trueno",
         "cost": ["electric", "electric", "any", "any"],
         "damage": 90,
-        "effect": "autoattack 90"
+        "effect": "autoattack 30"
       },
       {
         "name": "Rayo",
