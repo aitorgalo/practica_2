@@ -200,14 +200,12 @@ class Hand {
           // Sólo si tengo suficiente energía
           var countsAttack = { fight: 0, electric: 0, fire: 0, any: 0 }
           attack.cost.forEach(function (x) { countsAttack[x] = (countsAttack[x] || 0) + 1; });
-          console.log('attack', countsAttack);
 
           // Energy Pokemon
           var countsPokemon = { fight: 0, electric: 0, fire: 0 }
           card.energy.forEach(function (x) { countsPokemon[x] = (countsPokemon[x] || 0) + 1; });
-          console.log(' pokemon ', countsPokemon);
 
-          // Resume
+          // Sólo ataco si tengo suficientes energías
           if ((countsPokemon.fight >= countsAttack.fight) && (countsPokemon.electric >= countsAttack.electric)
             && (countsPokemon.fire >= countsAttack.fire) &&
 
@@ -223,6 +221,14 @@ class Hand {
               hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
 
               // Efectos
+              switch (attack.effect) {
+                case "discard 1 fire": break;
+                case "change pokemon": break;
+                case "random autoattack 10": break;
+                case "autoattack 90": break;
+                case "discard all energy": break;
+                case "random 20 x 2": break;
+              }
 
               // Paso turno
               this.status = "next";
@@ -358,8 +364,8 @@ class Hand {
                   card.status = 'dock';
                   this.retire = false;
 
-                  // Quito Energía necesaria
-
+                  // Quito Energía necesaria  
+                  card.energy.splice(0, card.retire);
 
                 }
 
