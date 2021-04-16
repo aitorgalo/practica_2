@@ -267,10 +267,11 @@ class Hand {
                     case "random autoattack 10": card.vitality_now -= Math.round(Math.random()) * 10; break;
                     case "autoattack 30": card.vitality_now -= 30; break;
                     case "discard all energy": card.energy = []; break;
-                    case "random 20 x 2": ataque_final += Math.round(Math.random()) * 20; ataque_final.vitality_now += Math.round(Math.random()) * 20; break;
+                    case "random 20 x 2": ataque_final += Math.round(Math.random()) * 20; ataque_final += Math.round(Math.random()) * 20; break;
                   }
 
                   // Quito la vida al rival
+                  if(ataque_final < 20) ataque_final = 0;
                   hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= ataque_final * multiplicador);
 
                   // Paso turno
