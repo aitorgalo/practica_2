@@ -18,7 +18,7 @@ class GUI {
         // Output
         let output = document.createElement("div");
         output.id = "output";
-        output.innerHTML = "Bienvenid@ ! Escribe start para empezar !";
+        output.innerHTML = "Bienvenid@ ! Escribe start y pulsa enter para empezar ! Para jugar escribe el comando numérico y presiona enter.";
         document.getElementsByTagName('body')[0].appendChild(output);
 
         // Input
