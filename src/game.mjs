@@ -14,15 +14,15 @@ class Game {
 
 	sendCommand(input, output) {
 		switch (input) {
-			case "start": this.initGame(input, output); this.gui.draw(this.hands); break;
-			case "print": console.log(this.hands); break;
+			case "start": this.initGame(false,input, output); this.gui.draw(this.hands); break;
+			case "print": if (typeof this.hands !== "undefined") console.log(this.hands); break;
 			case "clear": console.clear(); break;
-			default: this.readGameState(input, output); this.readGameState("", output); this.gui.draw(this.hands);
+			default: if (typeof this.hands !== "undefined") { this.readGameState(input, output); this.readGameState("", output); this.gui.draw(this.hands) };
 		}
 	}
 
 	// Give Cards to users again
-	initGame(input, output) {
+	initGame(debug,input, output) {
 
 		// Create New Hand of Cards (For Player 1 and Player 2)
 		this.hands = [new Hand(cardDatabase.cards, "Player 1"), new Hand(cardDatabase.cards, "Player 2")];
