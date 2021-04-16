@@ -216,6 +216,41 @@ class Hand {
         }
       }
 
+    // Unir Carta energía x 1
+    let combinacion = [];
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.attacked != true)
+          if (this.energy == true)
+            if (this.cards.filter(card => card.status === 'fight').length == 1)
+              this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
+
+                // Obtener Pokemons de Dock y Fight
+                this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
+                  .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
+
+                    // To not Repeat Combination
+                    if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
+                      output.innerHTML += `<br>${++accion}) Unir energía ${card.name} a ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
+                      if (accion == input) {
+                        // Discard Energy Card
+                        card.status = 'discard';
+
+                        // Add Energy to Card
+                        cardPokemon.energy.push(card.nature);
+
+                        // Energy Turn is over
+                        this.energy = false;
+                      }
+
+                      // Put Combination in Array
+                      combinacion.push(card.nature + "_" + cardPokemon.id);
+
+                    }
+
+                  })
+
+              });
 
     // Atacar
     if (this.dead != true)
@@ -332,42 +367,6 @@ class Hand {
 
                       // Set Pokemon Old
                       cardBase.status = 'discard';
-
-                    }
-
-                  })
-
-              });
-
-    // Unir Carta energía x 1
-    let combinacion = [];
-    if (this.dead != true)
-      if (this.robar != true)
-        if (this.attacked != true)
-          if (this.energy == true)
-            if (this.cards.filter(card => card.status === 'fight').length == 1)
-              this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
-
-                // Obtener Pokemons de Dock y Fight
-                this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
-                  .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
-
-                    // To not Repeat Combination
-                    if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
-                      output.innerHTML += `<br>${++accion}) Unir energía ${card.name} a ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
-                      if (accion == input) {
-                        // Discard Energy Card
-                        card.status = 'discard';
-
-                        // Add Energy to Card
-                        cardPokemon.energy.push(card.nature);
-
-                        // Energy Turn is over
-                        this.energy = false;
-                      }
-
-                      // Put Combination in Array
-                      combinacion.push(card.nature + "_" + cardPokemon.id);
 
                     }
 
