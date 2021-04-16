@@ -149,6 +149,7 @@ class Hand {
 
 
       // Get Options
+      if (this.cards.filter(card => card.status === 'dock').length < 5)
       this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
         output.innerHTML += `<br>${++accion}) ${card.name}`;
         if (accion == input) {

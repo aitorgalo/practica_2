@@ -1,6 +1,5 @@
 // Import Card Database
 import cardDatabase from '/database/cardDatabase.json';
-
 // Importo módulo con las cartas
 import { Hand } from './hand.mjs';
 // Importo módulo con el entorno gráfico

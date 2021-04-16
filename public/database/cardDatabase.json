@@ -1,215 +1,212 @@
-
 {
+  "cards": [
+    {
+      "type": "pokemon",
+      "name": "Charmander",
+      "nature": "fire",
+      "vitality": 60,
+      "attacks": [
+        {
+          "name": "Arañazo",
+          "cost": ["any"],
+          "damage": 10
+        },
+        {
+          "name": "Ascuas",
+          "cost": ["fire", "any"],
+          "damage": 30,
+          "effect": "discard 1 fire"
+        }
+      ],
+      "weakness": "water",
+      "retire": 1,
+      "cards_deck": 2
+    },
 
-"cards":
-[
-{
-    "type": "pokemon",
-    "name": "Charmander",
-    "nature": "fire",
-    "vitality": 60,
-    "attacks": [
-      {
-        "name": "Arañazo",
-        "cost": ["any"],
-        "damage": 10
-      },
-      {
-        "name": "Ascuas",
-        "cost": ["fire", "any"],
-        "damage": 30,
-        "effect": "discard 1 fire"
-      }
-    ],
-    "weakness": "water",
-    "retire": 1,
-    "cards_deck": 2
-  },
+    {
+      "type": "pokemon",
+      "name": "Charmeleon",
+      "nature": "fire",
+      "vitality": 80,
+      "attacks": [
+        {
+          "name": "Cuchillada",
+          "cost": ["any", "any", "any"],
+          "damage": 50
+        },
+        {
+          "name": "Lanzallamas",
+          "cost": ["fire", "fire", "any"],
+          "damage": 90,
+          "effect": "discard 1 fire"
+        }
+      ],
+      "weakness": "water",
+      "retire": 1,
+      "prevolution": "Charmander",
+      "cards_deck": 1
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Charmeleon",
-    "nature": "fire",
-    "vitality": 80,
-    "attacks": [
-      {
-        "name": "Cuchillada",
-        "cost": ["any", "any", "any"],
-        "damage": 50
-      },
-      {
-        "name": "Lanzallamas",
-        "cost": ["fire", "fire", "any"],
-        "damage": 90,
-        "effect": "discard 1 fire"
-      }
-    ],
-    "weakness": "water",
-    "retire": 1,
-    "prevolution": "Charmander",
-    "cards_deck": 1
-  },
+    {
+      "type": "pokemon",
+      "name": "Growlithe",
+      "nature": "fire",
+      "vitality": 70,
+      "attacks": [
+        {
+          "name": "Patada Posterior",
+          "cost": ["any"],
+          "damage": 10,
+          "effect": "change pokemon"
+        },
+        {
+          "name": "Llama",
+          "cost": ["fire", "any"],
+          "damage": 20
+        }
+      ],
+      "weakness": "water",
+      "retire": 2,
+      "cards_deck": 2
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Growlithe",
-    "nature": "fire",
-    "vitality": 70,
-    "attacks": [
-      {
-        "name": "Patada Posterior",
-        "cost": ["any"],
-        "damage": 10,
-        "effect": "change pokemon"
-      },
-      {
-        "name": "Llama",
-        "cost": ["fire", "any"],
-        "damage": 20
-      }
-    ],
-    "weakness": "water",
-    "retire": 2,
-    "cards_deck": 2
-  },
+    {
+      "type": "pokemon",
+      "name": "Ponyta",
+      "nature": "fire",
+      "vitality": 60,
+      "attacks": [
+        {
+          "name": "Patada Destrucción",
+          "cost": ["any", "any"],
+          "damage": 20
+        },
+        {
+          "name": "Cola de Fuego",
+          "cost": ["fire", "fire"],
+          "damage": 30
+        }
+      ],
+      "weakness": "water",
+      "retire": 1,
+      "cards_deck": 2
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Ponyta",
-    "nature": "fire",
-    "vitality": 60,
-    "attacks": [
-      {
-        "name": "Patada Destrucción",
-        "cost": ["any", "any"],
-        "damage": 20
-      },
-      {
-        "name": "Cola de Fuego",
-        "cost": ["fire", "fire"],
-        "damage": 30
-      }
-    ],
-    "weakness": "water",
-    "retire": 1,
-    "cards_deck": 2
-  },
+    {
+      "type": "pokemon",
+      "name": "Magmar",
+      "nature": "fire",
+      "vitality": 80,
+      "attacks": [
+        {
+          "name": "Puño Fuego",
+          "cost": ["fire", "fire"],
+          "damage": 30
+        },
+        {
+          "name": "Lanzallamas",
+          "cost": ["fire", "fire", "any"],
+          "damage": 60,
+          "effect": "discard 1 fire"
+        }
+      ],
+      "weakness": "water",
+      "retire": 2,
+      "cards_deck": 1
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Magmar",
-    "nature": "fire",
-    "vitality": 80,
-    "attacks": [
-      {
-        "name": "Puño Fuego",
-        "cost": ["fire", "fire"],
-        "damage": 30
-      },
-      {
-        "name": "Lanzallamas",
-        "cost": ["fire", "fire", "any"],
-        "damage": 60,
-        "effect": "discard 1 fire"
-      }
-    ],
-    "weakness": "water",
-    "retire": 2,
-    "cards_deck": 1
-  },
+    {
+      "type": "pokemon",
+      "name": "Pikachu",
+      "nature": "electric",
+      "vitality": 60,
+      "attacks": [
+        {
+          "name": "Roer",
+          "cost": ["any"],
+          "damage": 10
+        },
+        {
+          "name": "Sacudida Atronadora",
+          "cost": ["electric", "any"],
+          "damage": 30,
+          "effect": "random autoattack 10"
+        }
+      ],
+      "weakness": "fight",
+      "strong": "metal",
+      "retire": 1,
+      "cards_deck": 2
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Pikachu",
-    "nature": "electric",
-    "vitality": 60,
-    "attacks": [
-      {
-        "name": "Roer",
-        "cost": ["any"],
-        "damage": 10
-      },
-      {
-        "name": "Sacudida Atronadora",
-        "cost": ["electric", "any"],
-        "damage": 30,
-        "effect": "random autoattack 10"
-      }
-    ],
-    "weakness": "fight",
-    "strong": "metal",
-    "retire": 1,
-    "cards_deck": 2
-  },
+    {
+      "type": "pokemon",
+      "name": "Zapdos",
+      "nature": "electric",
+      "vitality": 110,
+      "attacks": [
+        {
+          "name": "Trueno",
+          "cost": ["electric", "electric", "any", "any"],
+          "damage": 90,
+          "effect": "autoattack 30"
+        },
+        {
+          "name": "Rayo",
+          "cost": ["electric", "electric", "electric", "electric"],
+          "damage": 170,
+          "effect": "discard all energy"
+        }
+      ],
+      "strong": "fight",
+      "retire": 2,
+      "cards_deck": 1
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Zapdos",
-    "nature": "electric",
-    "vitality": 110,
-    "attacks": [
-      {
-        "name": "Trueno",
-        "cost": ["electric", "electric", "any", "any"],
-        "damage": 90,
-        "effect": "autoattack 30"
-      },
-      {
-        "name": "Rayo",
-        "cost": ["electric", "electric", "electric", "electric"],
-        "damage": 170,
-        "effect": "discard all energy"
-      }
-    ],
-    "strong": "fight",
-    "retire": 2,
-    "cards_deck": 1
-  },
+    {
+      "type": "pokemon",
+      "name": "Machop",
+      "nature": "fight",
+      "vitality": 70,
+      "attacks": [
+        {
+          "name": "Golpe Bis",
+          "cost": ["fight", "fight"],
+          "damage": 0,
+          "effect": "random 20 x 2"
+        }
+      ],
+      "weak": "psychic",
+      "retire": 2,
+      "cards_deck": 1
+    },
 
-  {
-    "type": "pokemon",
-    "name": "Machop",
-    "nature": "fight",
-    "vitality": 70,
-    "attacks": [
-      {
-        "name": "Golpe Bis",
-        "cost": ["fight", "fight"],
-        "damage": 0,
-        "effect": "random 20 x 2"
-      }
-    ],
-    "weak": "psychic",
-    "retire": 2,
-    "cards_deck": 1
-  },
+    {
+      "type": "object",
+      "name": "Poción",
+      "effect": 30,
+      "cards_deck": 2
+    },
 
-  {
-    "type": "object",
-    "name": "Poción",
-    "effect": 30,
-    "cards_deck": 2
-  },
+    {
+      "name": "Energía Fuego",
+      "type": "energy",
+      "nature": "fire",
+      "cards_deck": 8
+    },
 
-  {
-    "name": "Energía Fuego",
-    "type": "energy",
-    "nature": "fire",
-    "cards_deck": 8
-  },
+    {
+      "name": "Energía Electricidad",
+      "type": "energy",
+      "nature": "electric",
+      "cards_deck": 4
+    },
 
-  {
-    "name": "Energía Electricidad",
-    "type": "energy",
-    "nature": "electric",
-    "cards_deck": 4
-  },
-
-  {
-    "name": "Energía Lucha",
-    "type": "energy",
-    "nature": "fight",
-    "cards_deck": 4
-  }
+    {
+      "name": "Energía Lucha",
+      "type": "energy",
+      "nature": "fight",
+      "cards_deck": 4
+    }
   ]
-  }
+}
