@@ -251,12 +251,12 @@ class Hand {
                   let ataque_final = attack.damage;
 
                   // Quito vida al rival dependiendo de strongness
-                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].strong === card.type) {
+                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].strong === card.nature) {
                     ataque_final -= 20;
                   }
 
                   // Quito vida al rival dependiendo de weakness
-                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].weakness === card.type) {
+                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].weakness === card.nature) {
                     multiplicador = 2;
                   }
 
@@ -267,7 +267,7 @@ class Hand {
                     case "random autoattack 10": card.vitality_now -= Math.round(Math.random()) * 10; break;
                     case "autoattack 30": card.vitality_now -= 30; break;
                     case "discard all energy": card.energy = []; break;
-                    case "random 20 x 2": ataque_final += Math.round(Math.random()) * 20; cardRival.vitality_now += Math.round(Math.random()) * 20; break;
+                    case "random 20 x 2": ataque_final += Math.round(Math.random()) * 20; ataque_final.vitality_now += Math.round(Math.random()) * 20; break;
                   }
 
                   // Quito la vida al rival
