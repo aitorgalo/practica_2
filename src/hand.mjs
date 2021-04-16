@@ -174,10 +174,10 @@ class Hand {
     this.energy = true;
     this.retire = true;
     this.attacked = false;
-    this.turno_partida++; 
+    this.turno_partida++;
 
     // All Pokemon can evolve in next turn
-    this.cards.filter(card => card.type === 'pokemon' && ( card.status === 'fight' || card.status === 'dock' ) ).map(card => card.canEvolve = true);
+    this.cards.filter(card => card.type === 'pokemon' && (card.status === 'fight' || card.status === 'dock')).map(card => card.canEvolve = true);
 
   }
 
@@ -188,267 +188,271 @@ class Hand {
     output.innerHTML = `Escoge Acción ${this.name}:`;
     let accion = 0;
 
-      // If 0 prizes or 0 Pokemon in dock or fight, dead
-      if ( (this.cards.filter(card => card.type === 'pokemon' && (card.status === 'fight' || card.status === 'dock') ).length == 0)
+    // If 0 prizes or 0 Pokemon in dock or fight, dead
+    if ((this.cards.filter(card => card.type === 'pokemon' && (card.status === 'fight' || card.status === 'dock')).length == 0)
       ||
-     (this.cards.filter(card => card.status === 'prize').length == 0) )
-      {
-        output.innerHTML += `<br>¡ Has perdido (3 PKMN eliminados o ninguno en FIGHT o DOCK) !¡ Pide la revancha con el comando start !`;
-        this.dead = true;
-      }
+      (this.cards.filter(card => card.status === 'prize').length == 0)) {
+      output.innerHTML += `<br>¡ Has perdido (3 PKMN eliminados o ninguno en FIGHT o DOCK) !¡ Pide la revancha con el comando start !`;
+      this.dead = true;
+    }
 
     // Robar Carta de Deck a Hand x 1
-    if(this.dead != true)
-    if (this.robar == true)
-    {
-      // Si tengo cartas robo
-      if (this.cards.filter(card => card.status === 'deck').length > 0)
-      {
+    if (this.dead != true)
+      if (this.robar == true) {
+        // Si tengo cartas robo
+        if (this.cards.filter(card => card.status === 'deck').length > 0) {
 
-      output.innerHTML += `<br>${++accion}) Coger carta`;
-      if (accion == input) {
+          output.innerHTML += `<br>${++accion}) Coger carta`;
+          if (accion == input) {
 
-          this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
-        this.robar = false;
+            this.cards.filter(card => card.status === 'deck')[0].status = 'hand';
+            this.robar = false;
+          }
+        }
+        // Sino hago como que he robado
+        else {
+          this.robar = false;
+        }
       }
-      }
-       // Sino hago como que he robado
-      else
-       {
-              this.robar = false;
-       }
-    }
-    
+
 
     // Atacar
-    if(this.dead != true)
-    if (this.robar != true)
-    if (this.attacked != true)
-      this.cards.filter(card => card.status === 'fight').forEach(card => {
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.attacked != true)
+          this.cards.filter(card => card.status === 'fight').forEach(card => {
 
-        // Pongo Cada Ataque disponible
-        card.attacks.forEach(attack => {
+            // Pongo Cada Ataque disponible
+            card.attacks.forEach(attack => {
 
-          // Sólo si tengo suficiente energía
-          var countsAttack = { fight: 0, electric: 0, fire: 0, any: 0 }
-          attack.cost.forEach(function (x) { countsAttack[x] = (countsAttack[x] || 0) + 1; });
+              // Sólo si tengo suficiente energía
+              var countsAttack = { fight: 0, electric: 0, fire: 0, any: 0 }
+              attack.cost.forEach(function (x) { countsAttack[x] = (countsAttack[x] || 0) + 1; });
 
-          // Energy Pokemon
-          var countsPokemon = { fight: 0, electric: 0, fire: 0 }
-          card.energy.forEach(function (x) { countsPokemon[x] = (countsPokemon[x] || 0) + 1; });
+              // Energy Pokemon
+              var countsPokemon = { fight: 0, electric: 0, fire: 0 }
+              card.energy.forEach(function (x) { countsPokemon[x] = (countsPokemon[x] || 0) + 1; });
 
-          // Sólo ataco si tengo suficientes energías
-          if ((countsPokemon.fight >= countsAttack.fight) && (countsPokemon.electric >= countsAttack.electric)
-            && (countsPokemon.fire >= countsAttack.fire) &&
+              // Sólo ataco si tengo suficientes energías
+              if ((countsPokemon.fight >= countsAttack.fight) && (countsPokemon.electric >= countsAttack.electric)
+                && (countsPokemon.fire >= countsAttack.fire) &&
 
-            ((countsPokemon.fight + countsPokemon.electric + countsPokemon.fire) >=
-              (countsAttack.fight + countsAttack.electric + countsAttack.fire + countsAttack.any))) {
+                ((countsPokemon.fight + countsPokemon.electric + countsPokemon.fire) >=
+                  (countsAttack.fight + countsAttack.electric + countsAttack.fire + countsAttack.any))) {
 
-            output.innerHTML += `<br>${++accion}) Ataque ${attack.name}`;
+                output.innerHTML += `<br>${++accion}) Ataque ${attack.name}`;
 
-            // Si puedo Atacar
-            if (accion == input) {
-
-              // Quito la vida al rival
-              hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= attack.damage);
-
-              // Quito la vida al rival según weakness
-
-              
-              // Quito vida al rival dependiendo de strongness
-
-
-              // Efectos
-              switch (attack.effect) {
-                case "discard 1 fire": card.energy.splice(card.energy.indexOf('fire'), 1); break;
-                case "change pokemon": card.status = 'dock' ; break;
-                case "random autoattack 10": card.vitality_now -= Math.round(Math.random()) * 10 ; break;
-                case "autoattack 30": card.vitality_now -= 30 ; break;
-                case "discard all energy": card.energy = []; break;
-                case "random 20 x 2": cardRival.vitality_now -= Math.round(Math.random()) * 20 ; cardRival.vitality_now -= Math.round(Math.random()) * 20 ;  break;
-              }
-
-              // Paso turno
-              if(! attack.effect === `change pokemon`)
-              this.status = "next";
-              else
-              this.attacked = true;
-
-            }
-
-          }
-
-        });
-      });
-
-    // Colocar Pokemon dock a fight
-    if(this.dead != true)
-    if (this.robar != true)
-      if (this.cards.filter(card => card.status === 'fight').length == 0)
-        this.cards.filter(card => card.status === 'dock' && card.type === 'pokemon').forEach(card => {
-          output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} DOCK a FIGHT`;
-          if (accion == input) {
-            card.status = 'fight';
-          }
-        });
-
-    // Colocar Pokemon hand a dock (Màx 5) x N
-    if(this.dead != true)
-    if (this.robar != true)
-    if (this.attacked != true)
-    if (this.cards.filter(card => card.status === 'fight').length == 1)
-      if (this.cards.filter(card => card.status === 'dock').length < 5)
-        this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
-          output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} HAND a DOCK`;
-          if (accion == input) {
-            card.status = 'dock';
-          }
-        });
-
-    // Evolucionar Pokemon x N
-    if(this.dead != true)
-    if (this.robar != true)
-    if(this.turno_partida != 1)
-    if (this.attacked != true)
-      this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
-        .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
-          // Sólo si tengo el Pokemon en Fight o Dock
-          this.cards.filter(cardBase => cardBase.canEvolve == true &&  (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
-            .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
-
-              output.innerHTML += `<br>${++accion}) Evolucionar PKMN ${cardBase.name} (${cardBase.status.toUpperCase()}) a ${cardEvolution.name}`;
-              if (accion == input) {
-                // Set Pokemon New
-                cardEvolution.status = cardBase.status;
-                cardEvolution.energy = cardBase.energy;
-                cardEvolution.vitality_now -= (cardBase.vitality - cardBase.vitality_now);
-
-                // Set Pokemon Old
-                cardBase.status = 'discard';
-
-              }
-
-            })
-
-        });
-
-    // Unir Carta energía x 1
-    let combinacion = [];
-    if(this.dead != true)
-    if (this.robar != true)
-    if (this.attacked != true)
-      if (this.energy == true)
-      if (this.cards.filter(card => card.status === 'fight').length == 1)
-        this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
-
-          // Obtener Pokemons de Dock y Fight
-          this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
-            .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
-
-              // To not Repeat Combination
-              if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
-                output.innerHTML += `<br>${++accion}) Unir energía ${card.name} a ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})` ;
-                if (accion == input) {
-                  // Discard Energy Card
-                  card.status = 'discard';
-
-                  // Add Energy to Card
-                  cardPokemon.energy.push(card.nature);
-
-                  // Energy Turn is over
-                  this.energy = false;
-                }
-
-                // Put Combination in Array
-                combinacion.push(card.nature + "_" + cardPokemon.id);
-
-              }
-
-            })
-
-        });
-
-    // Jugar Carta Entrenador x N
-    combinacion = [];
-    if(this.dead != true)
-    if (this.robar != true)
-    if (this.attacked != true)
-    if (this.cards.filter(card => card.status === 'fight').length == 1)
-      this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
-
-        // Obtener Pokemons de Dock y Fight
-        this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon' && cardPokemon.vitality_now < cardPokemon.vitality)
-          .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
-
-            // To not Repeat Combination
-            if (!combinacion.includes(card.name + "_" + cardPokemon.id)) {
-              output.innerHTML += `<br>${++accion}) Usar Objeto ${card.name} en ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
-              if (accion == input) {
-                // Discard Object Card
-                card.status = 'discard';
-
-                // Add HP to Card
-                cardPokemon.vitality_now += card.effect;
-                if (cardPokemon.vitality_now > cardPokemon.vitality) cardPokemon.vitality_now = cardPokemon.vitality;
-
-              }
-
-              // Put Combination in Array
-              combinacion.push(card.name + "_" + cardPokemon.id);
-
-            }
-
-          })
-
-      });
-
-    // Retirar Pokemon x 1
-    if (this.robar != true)
-    if(this.dead != true)
-      if (this.retire == true)
-      if (this.attacked != true)
-        if (this.cards.filter(card => card.status === 'fight').length == 1)
-          if (this.cards.filter(card => card.status === 'dock').length < 6)
-            this.cards.filter(card => card.status === 'fight').forEach(card => {
-
-              // Si tengo suficiente energía como para retirarlo
-              if (card.energy.length >= card.retire) {
-                output.innerHTML += `<br>${++accion}) Retirar PKMN ${card.name} FIGHT a DOCK`;
+                // Si puedo Atacar
                 if (accion == input) {
 
-                  // Retiro al dock
-                  card.status = 'dock';
-                  this.retire = false;
+                  // Multiplicador
+                  let multiplicador = 1;
+                  // Daño final
+                  let ataque_final = attack.damage;
 
-                  // Quito Energía necesaria  
-                  card.energy.splice(0, card.retire);
+                  // Quito vida al rival dependiendo de strongness
+                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].strong === card.type) {
+                    ataque_final -= 20;
+                  }
+
+                  // Quito vida al rival dependiendo de weakness
+                  if (hand_rival.cards.filter(cardRival => cardRival.status === 'fight')[0].weakness === card.type) {
+                    multiplicador = 2;
+                  }
+
+                  // Efectos
+                  switch (attack.effect) {
+                    case "discard 1 fire": card.energy.splice(card.energy.indexOf('fire'), 1); break;
+                    case "change pokemon": card.status = 'dock'; break;
+                    case "random autoattack 10": card.vitality_now -= Math.round(Math.random()) * 10; break;
+                    case "autoattack 30": card.vitality_now -= 30; break;
+                    case "discard all energy": card.energy = []; break;
+                    case "random 20 x 2": ataque_final += Math.round(Math.random()) * 20; cardRival.vitality_now += Math.round(Math.random()) * 20; break;
+                  }
+
+                  // Quito la vida al rival
+                  hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= ataque_final * multiplicador);
+
+                  // Paso turno
+                  if (!attack.effect === `change pokemon`)
+                    this.status = "next";
+                  else
+                    this.attacked = true;
 
                 }
 
               }
 
             });
+          });
+
+    // Colocar Pokemon dock a fight
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.cards.filter(card => card.status === 'fight').length == 0)
+          this.cards.filter(card => card.status === 'dock' && card.type === 'pokemon').forEach(card => {
+            output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} DOCK a FIGHT`;
+            if (accion == input) {
+              card.status = 'fight';
+            }
+          });
+
+    // Colocar Pokemon hand a dock (Màx 5) x N
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.attacked != true)
+          if (this.cards.filter(card => card.status === 'fight').length == 1)
+            if (this.cards.filter(card => card.status === 'dock').length < 5)
+              this.cards.filter(card => card.status === 'hand' && card.type === 'pokemon' && card.prevolution === undefined).forEach(card => {
+                output.innerHTML += `<br>${++accion}) Colocar PKMN ${card.name} HAND a DOCK`;
+                if (accion == input) {
+                  card.status = 'dock';
+                }
+              });
+
+    // Evolucionar Pokemon x N
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.turno_partida != 1)
+          if (this.attacked != true)
+            this.cards.filter(cardEvolution => cardEvolution.status === 'hand' && cardEvolution.type === 'pokemon' && cardEvolution.prevolution !== undefined)
+              .sort((a, b) => b.order() - a.order()).forEach(cardEvolution => {
+                // Sólo si tengo el Pokemon en Fight o Dock
+                this.cards.filter(cardBase => cardBase.canEvolve == true && (cardBase.status === 'fight' || cardBase.status === 'dock') && cardBase.type === 'pokemon' && cardBase.name === cardEvolution.prevolution)
+                  .sort((a, b) => b.order() - a.order()).forEach(cardBase => {
+
+                    output.innerHTML += `<br>${++accion}) Evolucionar PKMN ${cardBase.name} (${cardBase.status.toUpperCase()}) a ${cardEvolution.name}`;
+                    if (accion == input) {
+                      // Set Pokemon New
+                      cardEvolution.status = cardBase.status;
+                      cardEvolution.energy = cardBase.energy;
+                      cardEvolution.vitality_now -= (cardBase.vitality - cardBase.vitality_now);
+
+                      // Set Pokemon Old
+                      cardBase.status = 'discard';
+
+                    }
+
+                  })
+
+              });
+
+    // Unir Carta energía x 1
+    let combinacion = [];
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.attacked != true)
+          if (this.energy == true)
+            if (this.cards.filter(card => card.status === 'fight').length == 1)
+              this.cards.filter(card => card.status === 'hand' && card.type === 'energy').sort((a, b) => b.order() - a.order()).forEach(card => {
+
+                // Obtener Pokemons de Dock y Fight
+                this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon')
+                  .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
+
+                    // To not Repeat Combination
+                    if (!combinacion.includes(card.nature + "_" + cardPokemon.id)) {
+                      output.innerHTML += `<br>${++accion}) Unir energía ${card.name} a ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
+                      if (accion == input) {
+                        // Discard Energy Card
+                        card.status = 'discard';
+
+                        // Add Energy to Card
+                        cardPokemon.energy.push(card.nature);
+
+                        // Energy Turn is over
+                        this.energy = false;
+                      }
+
+                      // Put Combination in Array
+                      combinacion.push(card.nature + "_" + cardPokemon.id);
+
+                    }
+
+                  })
+
+              });
+
+    // Jugar Carta Entrenador x N
+    combinacion = [];
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.attacked != true)
+          if (this.cards.filter(card => card.status === 'fight').length == 1)
+            this.cards.filter(card => card.status === 'hand' && card.type === 'object').sort((a, b) => b.order() - a.order()).forEach(card => {
+
+              // Obtener Pokemons de Dock y Fight
+              this.cards.filter(cardPokemon => (cardPokemon.status === 'dock' || cardPokemon.status === 'fight') && cardPokemon.type === 'pokemon' && cardPokemon.vitality_now < cardPokemon.vitality)
+                .sort((a, b) => b.order() - a.order()).forEach(cardPokemon => {
+
+                  // To not Repeat Combination
+                  if (!combinacion.includes(card.name + "_" + cardPokemon.id)) {
+                    output.innerHTML += `<br>${++accion}) Usar Objeto ${card.name} en ${cardPokemon.name} (${cardPokemon.status.toUpperCase()})`;
+                    if (accion == input) {
+                      // Discard Object Card
+                      card.status = 'discard';
+
+                      // Add HP to Card
+                      cardPokemon.vitality_now += card.effect;
+                      if (cardPokemon.vitality_now > cardPokemon.vitality) cardPokemon.vitality_now = cardPokemon.vitality;
+
+                    }
+
+                    // Put Combination in Array
+                    combinacion.push(card.name + "_" + cardPokemon.id);
+
+                  }
+
+                })
+
+            });
+
+    // Retirar Pokemon x 1
+    if (this.robar != true)
+      if (this.dead != true)
+        if (this.retire == true)
+          if (this.attacked != true)
+            if (this.cards.filter(card => card.status === 'fight').length == 1)
+              if (this.cards.filter(card => card.status === 'dock').length < 6)
+                this.cards.filter(card => card.status === 'fight').forEach(card => {
+
+                  // Si tengo suficiente energía como para retirarlo
+                  if (card.energy.length >= card.retire) {
+                    output.innerHTML += `<br>${++accion}) Retirar PKMN ${card.name} FIGHT a DOCK`;
+                    if (accion == input) {
+
+                      // Retiro al dock
+                      card.status = 'dock';
+                      this.retire = false;
+
+                      // Quito Energía necesaria  
+                      card.energy.splice(0, card.retire);
+
+                    }
+
+                  }
+
+                });
 
     // Pasar Turno (sólo si hay algún activo luchando)
-    if(this.dead != true)
-    if (this.robar != true)
-      if (this.cards.filter(card => card.status === 'fight').length == 1) {
-        output.innerHTML += `<br>${++accion}) Pasar turno`;
-        if (accion == input) {
-          this.status = "next";
+    if (this.dead != true)
+      if (this.robar != true)
+        if (this.cards.filter(card => card.status === 'fight').length == 1) {
+          output.innerHTML += `<br>${++accion}) Pasar turno`;
+          if (accion == input) {
+            this.status = "next";
+          }
         }
-      }
 
-      // Eliminar Pokemon
-      this.eliminar(this,hand_rival);
-      this.eliminar(hand_rival,this);
+    // Eliminar Pokemon
+    this.eliminar(this, hand_rival);
+    this.eliminar(hand_rival, this);
 
 
   }
 
- // Para eliminar Pokemon
- eliminar(hand_1 , hand_2)
- {
+  // Para eliminar Pokemon
+  eliminar(hand_1, hand_2) {
 
     // Si mueren mis Pokemon (banquillo o lucha) lo descarto y doy mis premios
     hand_2.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
@@ -476,7 +480,7 @@ class Hand {
     hand_2.cards.filter(card => (card.status === 'fight' || card.status === 'dock') && card.type === 'pokemon')
       .filter(card => card.vitality_now <= 0).map(card => card.status = 'discard');
 
- }
+  }
 
 
   // Para ordenar la array
