@@ -271,7 +271,7 @@ class Hand {
                   }
 
                   // Quito la vida al rival
-                  if(ataque_final < 20) ataque_final = 0;
+                  if(ataque_final < 0) ataque_final = 0;
                   hand_rival.cards.filter(cardRival => cardRival.status === 'fight').map(cardRival => cardRival.vitality_now -= ataque_final * multiplicador);
 
                   // Paso turno
